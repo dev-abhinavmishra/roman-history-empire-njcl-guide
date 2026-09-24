@@ -6968,10 +6968,10 @@ function updateTreeLegend(){
 function applyTreeTransform(){
   $("#treeSvg").style.transform = `translate(${TREE.tx}px,${TREE.ty}px) scale(${TREE.scale})`;
 }
-const TREE_MIN_SCALE = 0.62, TREE_MAX_SCALE = 1.4;
+const TREE_MIN_SCALE = 0.04, TREE_MAX_SCALE = 1.4;
 function fitTree(){
   // Family tree: fit to WIDTH so the whole generation is visible; the user scrolls
-  // DOWN through the dynasties. Zoom is clamped so it can't shrink into confusion.
+  // DOWN through the dynasties. Min scale is tiny so even very wide trees fit.
   const stage = $("#treeStage"), svg = $("#treeSvg");
   const w = parseFloat(svg.getAttribute("width")) || 1;
   const sw = stage.clientWidth;
