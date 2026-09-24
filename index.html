@@ -69,7 +69,7 @@ button{font-family:inherit}
    HEADER
    ============================================================ */
 header.app-head{
-  position:sticky;top:0;z-index:40;
+  position:sticky;top:0;z-index:61;
   background:linear-gradient(180deg,var(--bg-panel),var(--bg-panel) 70%, color-mix(in srgb,var(--bg-panel),transparent 12%));
   border-bottom:1px solid var(--line-strong);
   box-shadow:var(--shadow-sm);
@@ -7888,6 +7888,7 @@ function renderAll(){
   renderCompare();
 }
 function setView(v){
+  closePanel();
   STATE.view = v;
   $$("nav.tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
   $$(".view").forEach(s => s.classList.remove("active"));
