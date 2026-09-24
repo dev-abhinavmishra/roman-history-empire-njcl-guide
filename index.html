@@ -164,7 +164,7 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 1rem 4rem}
   overflow:hidden;height:74vh;min-height:460px;cursor:grab;touch-action:none
 }
 .tree-stage.grabbing{cursor:grabbing}
-.tree-zoom{position:absolute;right:.6rem;bottom:.6rem;display:flex;flex-direction:column;gap:.3rem;z-index:6}
+.tree-zoom{position:absolute;right:.6rem;top:.6rem;display:flex;flex-direction:column;gap:.3rem;z-index:6}
 .tree-zoom button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line-strong);background:var(--bg-panel);color:var(--ink);font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm)}
 #treeSvg{position:absolute;top:0;left:0;transform-origin:0 0}
 .node{cursor:pointer}
@@ -355,7 +355,7 @@ dl.gloss dd .njcl{font-size:.74rem;color:var(--ink-faint);font-style:italic;disp
 .quiz-explain{margin-top:.7rem;padding:.6rem .8rem;border-radius:8px;background:var(--bg-sunk);font-size:.85rem;color:var(--ink-soft)}
 .quiz-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;color:var(--ink-faint);font-size:.8rem}
 /* era strip */
-.era-strip{display:flex;gap:2px;height:52px;margin:.5rem 0}
+.era-strip{display:flex;gap:2px;height:52px;margin:.5rem 0;overflow-x:auto;padding-bottom:2px}
 .era-seg{position:relative;background:var(--accent);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 .45rem;min-width:44px}
 .era-seg.ext{background:var(--accent2,#8a6f2c)}
 .era-seg.adv{background:#6b5b8a}
@@ -1688,7 +1688,7 @@ DATA.emperors = [
   alternateNames:["Maximinus I","Maximinus 'the Thracian'"],
   reignStart:235, reignEnd:238, accessionYear:235, deathYear:238, ageAccession:62, ageDeath:65,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"severus-alexander", successor:"gordian-iii", coEmperors:[],
+  predecessor:"severus-alexander", successor:"gordian-i", coEmperors:[],
   father:"(Thracian provincial)", mother:null, spouses:["Caecilia Paulina"], children:["Maximus (son, co-Caesar)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:[],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1715,7 +1715,7 @@ DATA.emperors = [
   alternateNames:["Gordian III"],
   reignStart:238, reignEnd:244, accessionYear:238, deathYear:244, ageAccession:13, ageDeath:19,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"maximinus-thrax", successor:"philip-arab", coEmperors:["Pupienus & Balbinus (briefly, 238)"],
+  predecessor:"pupienus", successor:"philip-arab", coEmperors:["Pupienus & Balbinus (briefly, 238)"],
   father:"(senatorial family)", mother:"Antonia Gordiana (daughter of Gordian I)", spouses:["Furia Sabinia Tranquillina"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Gordian I (grandfather)","Gordian II (uncle)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1769,7 +1769,7 @@ DATA.emperors = [
   alternateNames:["Trajan Decius"],
   reignStart:249, reignEnd:251, accessionYear:249, deathYear:251, ageAccession:48, ageDeath:50,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"philip-arab", successor:"valerian", coEmperors:["Herennius Etruscus (son)"],
+  predecessor:"philip-arab", successor:"hostilian", coEmperors:["Herennius Etruscus (son)"],
   father:null, mother:null, spouses:["Herennia Etruscilla"], children:["Herennius Etruscus","Hostilian"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:[],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1796,7 +1796,7 @@ DATA.emperors = [
   alternateNames:["Valerian I"],
   reignStart:253, reignEnd:260, accessionYear:253, deathYear:260, ageAccession:58, ageDeath:65,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"decius", successor:"gallienus", coEmperors:["gallienus"],
+  predecessor:"aemilian", successor:"gallienus", coEmperors:["gallienus"],
   father:null, mother:null, spouses:["Egnatia Mariniana"], children:["Gallienus"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Gallienus (son & co-emperor)"],
   maritalLinks:[], biologicalLinks:["gallienus"], adoptiveLinks:[],
@@ -1850,7 +1850,7 @@ DATA.emperors = [
   alternateNames:["Claudius II","Claudius Gothicus (\"conqueror of the Goths\")"],
   reignStart:268, reignEnd:270, accessionYear:268, deathYear:270, ageAccession:54, ageDeath:56,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"gallienus", successor:"aurelian", coEmperors:["Quintillus (brother, briefly after him)"],
+  predecessor:"gallienus", successor:"quintillus", coEmperors:["Quintillus (brother, briefly after him)"],
   father:null, mother:null, spouses:[], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Quintillus (brother)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1877,7 +1877,7 @@ DATA.emperors = [
   alternateNames:["Restitutor Orbis (\"Restorer of the World\")","Restitutor Orientis (\"Restorer of the East\")"],
   reignStart:270, reignEnd:275, accessionYear:270, deathYear:275, ageAccession:56, ageDeath:61,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"claudius-gothicus", successor:"diocletian", coEmperors:[],
+  predecessor:"quintillus", successor:"tacitus", coEmperors:[],
   father:null, mother:null, spouses:["Ulpia Severina"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:[],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1904,7 +1904,7 @@ DATA.emperors = [
   alternateNames:["Probus"],
   reignStart:276, reignEnd:282, accessionYear:276, deathYear:282, ageAccession:44, ageDeath:50,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"aurelian", successor:"diocletian", coEmperors:[],
+  predecessor:"florian", successor:"carus", coEmperors:[],
   father:null, mother:null, spouses:[], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:[],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1931,7 +1931,7 @@ DATA.emperors = [
   alternateNames:["Carus"],
   reignStart:282, reignEnd:283, accessionYear:282, deathYear:283, ageAccession:60, ageDeath:61,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"probus", successor:"diocletian", coEmperors:["Carinus (son)","Numerian (son)"],
+  predecessor:"probus", successor:"numerian", coEmperors:["Carinus (son)","Numerian (son)"],
   father:null, mother:null, spouses:[], children:["Carinus","Numerian"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Carinus & Numerian (sons)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -1958,7 +1958,7 @@ DATA.emperors = [
   alternateNames:["Diocles (birth)","Iovius (\"of Jupiter\")"],
   reignStart:284, reignEnd:305, accessionYear:284, deathYear:311, ageAccession:40, ageDeath:67,
   dynasty:"tetrarchy", region:"Unified Empire",
-  predecessor:"carus", successor:"galerius", coEmperors:["maximian","galerius","constantius-chlorus"],
+  predecessor:"numerian", successor:"galerius", coEmperors:["maximian","galerius","constantius-chlorus"],
   father:"(Dalmatian, of low/freedman origin)", mother:null, spouses:["Prisca"], children:["Valeria (married Galerius)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Galerius (Caesar & son-in-law)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2067,7 +2067,7 @@ DATA.emperors = [
   alternateNames:["Maxentius"],
   reignStart:306, reignEnd:312, accessionYear:306, deathYear:312, ageAccession:23, ageDeath:29,
   dynasty:"tetrarchy", region:"Western Roman Empire",
-  predecessor:"constantius-chlorus", successor:"constantine-i", coEmperors:[],
+  predecessor:"severus-ii", successor:"constantine-i", coEmperors:[],
   father:"Maximian", mother:"Eutropia", spouses:["Valeria Maximilla (daughter of Galerius)"], children:["Valerius Romulus (died young)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Maximian (father)","Fausta (sister, Constantine's wife)","Constantine I (brother-in-law & rival)"],
   maritalLinks:[], biologicalLinks:["maximian"], adoptiveLinks:[],
@@ -2121,7 +2121,7 @@ DATA.emperors = [
   alternateNames:["Constantine I","Constantine the Great","Saint Constantine (in the Eastern Church)"],
   reignStart:306, reignEnd:337, accessionYear:306, deathYear:337, ageAccession:34, ageDeath:65,
   dynasty:"constantinian", region:"Unified Empire",
-  predecessor:"licinius", successor:"constantius-ii", coEmperors:["licinius","constantine-ii","constans","constantius-ii"],
+  predecessor:"constantius-chlorus", successor:"constantine-ii", coEmperors:["licinius","constantine-ii","constans","constantius-ii"],
   father:"Constantius Chlorus", mother:"Helena (Saint Helena)",
   spouses:["Minervina","Fausta (daughter of Maximian)"],
   children:["Crispus (executed)","Constantine II","Constans","Constantius II","Constantina","Helena"],
@@ -2448,7 +2448,7 @@ DATA.emperors = [
   alternateNames:["Honorius"],
   reignStart:393, reignEnd:423, accessionYear:395, deathYear:423, ageAccession:10, ageDeath:38,
   dynasty:"theodosian", region:"Western Roman Empire",
-  predecessor:"theodosius-i", successor:"valentinian-iii", coEmperors:["arcadius","constantius-iii-note"],
+  predecessor:"theodosius-i", successor:"johannes", coEmperors:["arcadius","constantius-iii-note"],
   father:"Theodosius I", mother:"Galla", spouses:["Maria","Thermantia (both daughters of Stilicho)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Arcadius (brother, East)","Galla Placidia (half-sister)","Valentinian III (nephew, successor)","Stilicho (general & father-in-law)"],
   maritalLinks:[], biologicalLinks:["theodosius-i","arcadius"], adoptiveLinks:[],
@@ -2475,7 +2475,7 @@ DATA.emperors = [
   alternateNames:["Theodosius II"],
   reignStart:402, reignEnd:450, accessionYear:408, deathYear:450, ageAccession:7, ageDeath:49,
   dynasty:"theodosian", region:"Eastern Roman Empire",
-  predecessor:"arcadius", successor:"valentinian-iii", coEmperors:[],
+  predecessor:"arcadius", successor:"marcian", coEmperors:[],
   father:"Arcadius", mother:"Aelia Eudoxia", spouses:["Aelia Eudocia"], children:["Licinia Eudoxia (married Valentinian III)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Pulcheria (sister, regent)","Arcadius (father)"],
   maritalLinks:[], biologicalLinks:["arcadius"], adoptiveLinks:[],
@@ -2502,7 +2502,7 @@ DATA.emperors = [
   alternateNames:["Valentinian III"],
   reignStart:425, reignEnd:455, accessionYear:425, deathYear:455, ageAccession:6, ageDeath:36,
   dynasty:"theodosian", region:"Western Roman Empire",
-  predecessor:"honorius", successor:"romulus-augustulus", coEmperors:[],
+  predecessor:"johannes", successor:"petronius-maximus", coEmperors:[],
   father:"Constantius III", mother:"Galla Placidia (daughter of Theodosius I)", spouses:["Licinia Eudoxia"], children:["Eudocia","Placidia"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Galla Placidia (mother, regent)","Honorius (uncle)","Aetius (his general)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2529,7 +2529,7 @@ DATA.emperors = [
   alternateNames:["Augustulus (\"little Augustus\", a mocking diminutive)","Momyllus"],
   reignStart:475, reignEnd:476, accessionYear:475, deathYear:null, ageAccession:16, ageDeath:null,
   dynasty:"western", region:"Western Roman Empire",
-  predecessor:"valentinian-iii", successor:"justinian-i", coEmperors:[],
+  predecessor:"julius-nepos", successor:"zeno", coEmperors:[],
   father:"Orestes (a general, once secretary to Attila)", mother:null, spouses:[], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Orestes (father, the real power)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2556,7 +2556,7 @@ DATA.emperors = [
   alternateNames:["Justinian the Great","Justinian I"],
   reignStart:527, reignEnd:565, accessionYear:527, deathYear:565, ageAccession:45, ageDeath:83,
   dynasty:"byzantine", region:"Eastern Roman Empire",
-  predecessor:"romulus-augustulus", successor:"heraclius", coEmperors:[],
+  predecessor:"justin-i", successor:"justin-ii", coEmperors:[],
   father:"(peasant family of Illyria); adopted by his uncle Justin I", mother:"Vigilantia", spouses:["Theodora (the powerful empress, former actress)"], children:[],
   adoptiveParents:["Justin I (uncle, adopted and groomed him)"], adoptiveHeirs:[],
   notableRelatives:["Justin I (uncle/predecessor)","Theodora (wife)","Belisarius & Narses (his generals)"],
@@ -2584,7 +2584,7 @@ DATA.emperors = [
   alternateNames:["Herakleios"],
   reignStart:610, reignEnd:641, accessionYear:610, deathYear:641, ageAccession:35, ageDeath:66,
   dynasty:"byzantine", region:"Eastern Roman Empire",
-  predecessor:"justinian-i", successor:"basil-ii", coEmperors:[],
+  predecessor:"phocas", successor:"constans-ii", coEmperors:[],
   father:"Heraclius the Elder (Exarch of Africa)", mother:"Epiphania", spouses:["Eudokia","Martina (his niece)"], children:["Constantine III","Heraklonas"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:[],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2611,7 +2611,7 @@ DATA.emperors = [
   alternateNames:["Basil the Bulgar-Slayer (\"Boulgaroktonos\")","Basileios II"],
   reignStart:976, reignEnd:1025, accessionYear:976, deathYear:1025, ageAccession:18, ageDeath:67,
   dynasty:"byzantine", region:"Eastern Roman Empire",
-  predecessor:"heraclius", successor:"alexios-i", coEmperors:["Constantine VIII (brother)"],
+  predecessor:"john-i-tzimiskes", successor:"constantine-viii", coEmperors:["Constantine VIII (brother)"],
   father:"Romanos II", mother:"Theophano", spouses:["(never married)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Constantine VIII (brother & co-emperor)","of the Macedonian dynasty"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2638,7 +2638,7 @@ DATA.emperors = [
   alternateNames:["Alexius I Comnenus"],
   reignStart:1081, reignEnd:1118, accessionYear:1081, deathYear:1118, ageAccession:24, ageDeath:61,
   dynasty:"byzantine", region:"Eastern Roman Empire",
-  predecessor:"basil-ii", successor:"constantine-xi", coEmperors:[],
+  predecessor:"nikephoros-iii", successor:"john-ii", coEmperors:[],
   father:"John Komnenos", mother:"Anna Dalassene", spouses:["Irene Doukaina"], children:["John II Komnenos","Anna Komnene (the historian)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Anna Komnene (daughter, author of the 'Alexiad')","John II Komnenos (son & successor)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2665,7 +2665,7 @@ DATA.emperors = [
   alternateNames:["Constantine XI","Constantine Palaeologus","Konstantinos XI Dragazes"],
   reignStart:1449, reignEnd:1453, accessionYear:1449, deathYear:1453, ageAccession:44, ageDeath:49,
   dynasty:"byzantine", region:"Byzantine continuation",
-  predecessor:"alexios-i", successor:null, coEmperors:[],
+  predecessor:"john-viii", successor:null, coEmperors:[],
   father:"Manuel II Palaiologos", mother:"Helena Dragaš", spouses:["Theodora Tocco","Caterina Gattilusio (both died)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Manuel II (father)","John VIII Palaiologos (brother & predecessor)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -3117,7 +3117,7 @@ DATA.emperors.push(...[
   alternateNames:["Postumus the Gaul"],
   reignStart:260, reignEnd:269, accessionYear:260, deathYear:269, ageAccession:null, ageDeath:null,
   dynasty:"crisis", region:"Gallic Empire",
-  predecessor:"gallienus", successor:"marius", coEmperors:[],
+  predecessor:"gallienus", successor:"laelianus", coEmperors:[],
   father:"(unknown — likely Batavian or Gaulish)", mother:"(unknown)",
   spouses:["(unknown — a 'Augusta', later mother? figure Victoria/Vitruvia looms over his successors)"], children:["(none recorded)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Saloninus (Gallienus' son, killed by his men at Cologne)"],
@@ -3145,7 +3145,7 @@ DATA.emperors.push(...[
   alternateNames:["Marius the Blacksmith (per HA, probably invented)"],
   reignStart:269, reignEnd:269, accessionYear:269, deathYear:269, ageAccession:null, ageDeath:null,
   dynasty:"crisis", region:"Gallic Empire",
-  predecessor:"postumus", successor:"victorinus", coEmperors:[],
+  predecessor:"laelianus", successor:"victorinus", coEmperors:[],
   father:"(unknown — HA calls him a blacksmith)", mother:"(unknown)",
   spouses:[], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Postumus (predecessor)","Victorinus (successor, possibly his killer)"],
@@ -4041,7 +4041,7 @@ DATA.emperors.push(...[
   alternateNames:["Constantius of Naissus"],
   reignStart:421, reignEnd:421, accessionYear:421, deathYear:421, ageAccession:null, ageDeath:null,
   dynasty:"theodosian", region:"Western Roman Empire",
-  predecessor:"honorius", successor:"johannes", coEmperors:["honorius"],
+  predecessor:"honorius", successor:"honorius", coEmperors:["honorius"],
   father:"(unknown — from Naissus, like Constantine)", mother:"(unknown)",
   spouses:["Galla Placidia (daughter of Theodosius I — forced into marriage 417)"], children:["Valentinian III (son)","Justa Grata Honoria (daughter — the one who 'proposed' to Attila)"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Galla Placidia (wife)","Valentinian III (son & later emperor)","Honoria (daughter)"],
@@ -6199,7 +6199,7 @@ DATA.people.push(...[
   {id:"agricola", displayName:"Agricola", fullName:"Gnaeus Julius Agricola", alternateNames:["Julius Agricola"], year:40, dynasty:"flavian",
    role:"Conqueror of Britain; Tacitus's father-in-law", bio:"Governor of Britain (77/78–84/85) who completed the conquest of Wales, including the Druid island of Mona, carried Roman arms deep into Scotland, and smashed the Caledonians under Calgacus at Mons Graupius (83/84). Domitian recalled him and never again employed him; his life is the subject of Tacitus's Agricola.",
    njclNote:"Mons Graupius ends his governorship; 'they make a desert and call it peace' is Calgacus's speech against him in Tacitus.",
-   biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["tacitus","domitian","calgacus"], powerLinks:[],
+   biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["tacitus-historian","domitian","calgacus"], powerLinks:[],
    tags:["military"], sources:["Wikipedia: Gnaeus Julius Agricola","Tacitus, Agricola"]},
   {id:"calgacus", displayName:"Calgacus", fullName:"Calgacus (Galgacus)", alternateNames:["Galgacus"], year:83, dynasty:"flavian",
    role:"Caledonian leader at Mons Graupius", bio:"Chieftain who rallied the Caledonian tribes for the climactic battle against Agricola at Mons Graupius (83 or 84). He exists only in Tacitus, whose pre-battle speech gives him the immortal line 'ubi solitudinem faciunt, pacem appellant' — 'they make a desolation and call it peace.'",
@@ -6228,7 +6228,7 @@ DATA.people.push(...[
    tags:["literature"], sources:["Wikipedia: Martial","Britannica: Martial"]},
 
   /* ---- Nerva-Antonine era ---- */
-  {id:"tacitus", displayName:"Tacitus", fullName:"Publius (or Gaius) Cornelius Tacitus", alternateNames:["Cornelius Tacitus"], year:56, dynasty:"nervaAntonine",
+  {id:"tacitus-historian", displayName:"Tacitus", fullName:"Publius (or Gaius) Cornelius Tacitus", alternateNames:["Cornelius Tacitus"], year:56, dynasty:"nervaAntonine",
    role:"Rome's greatest historian", bio:"Senator, consul (97), and proconsul of Asia whose works define our picture of the early Empire: Agricola and Germania (both 98), the Histories (69–96), and the Annals (Tiberius to Nero). His trenchant, pessimistic style anatomizes power under the Caesars — and he married Agricola's daughter.",
    njclNote:"Annals = Tiberius→Nero; Histories = the civil wars. Don't confuse him with the emperor Tacitus (275–276) or Suetonius the biographer.",
    biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["pliny-younger","agricola","trajan"], powerLinks:[],
@@ -6236,7 +6236,7 @@ DATA.people.push(...[
   {id:"pliny-younger", displayName:"Pliny the Younger", fullName:"Gaius Plinius Caecilius Secundus", alternateNames:["Pliny"], year:61, dynasty:"nervaAntonine",
    role:"Letter-writer; Trajan's governor in Bithynia", bio:"Nephew and adopted son of the encyclopedist; a career senator whose polished Letters are a key window on the era — including two to Tacitus describing Vesuvius and his uncle's death, and the famous correspondence with Trajan (X.96–97) on how to treat Christians, our earliest official statement of Roman policy toward them.",
    njclNote:"The Christians letter to Trajan (c. 112) is a staple primary source: 'the contagion of this superstition.'",
-   biologicalLinks:["pliny-elder"], maritalLinks:[], adoptiveLinks:["pliny-elder"], associateLinks:["trajan","tacitus"], powerLinks:[],
+   biologicalLinks:["pliny-elder"], maritalLinks:[], adoptiveLinks:["pliny-elder"], associateLinks:["trajan","tacitus-historian"], powerLinks:[],
    tags:["literature","christianity"], sources:["Wikipedia: Pliny the Younger","Britannica: Pliny the Younger"]},
   {id:"suetonius", displayName:"Suetonius", fullName:"Gaius Suetonius Tranquillus", alternateNames:["Suetonius Tranquillus"], year:69, dynasty:"nervaAntonine",
    role:"Biographer of the Twelve Caesars", bio:"Equestrian scholar and imperial secretary (ab epistulis) dismissed by Hadrian; his De Vita Caesarum — Julius Caesar through Domitian — supplies the gossip, omens, and anecdotes behind most 'facts' students learn about the early emperors.",
@@ -6520,7 +6520,7 @@ DATA.people.push(...[
    njclNote:"Belisarius STARTED the Gothic war; Narses FINISHED it (552–553). The eunuch general is an exam-favorite contrast.",
    biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["justinian-i","belisarius","totila"], powerLinks:[],
    tags:["military","byzantine-continuity"], sources:["Wikipedia: Narses","Britannica: Narses"]},
-  {id:"procopius", displayName:"Procopius", fullName:"Procopius of Caesarea", alternateNames:["Procopius of Caesarea"], year:500, dynasty:"byzantine",
+  {id:"procopius-historian", displayName:"Procopius", fullName:"Procopius of Caesarea", alternateNames:["Procopius of Caesarea"], year:500, dynasty:"byzantine",
    role:"Historian of Justinian (and his secret scourge)", bio:"Legal secretary to Belisarius through the Persian, Vandal, and Gothic campaigns; his History of the Wars is the indispensable eyewitness account, On Buildings the catalog of Justinian's works — and the posthumous Anecdota (Secret History) is a scandalous inversion denouncing Justinian as a demon, Theodora as a monster, and Belisarius as a cuckold.",
    njclNote:"Same author, three voices: official Wars, flattering Buildings, venomous Secret History — THE primary-source lesson for 6th century.",
    biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["belisarius","justinian-i","theodora"], powerLinks:[],
@@ -6533,7 +6533,7 @@ DATA.people.push(...[
   {id:"tribonian", displayName:"Tribonian", fullName:"Tribonian (Tribonianus)", alternateNames:["Tribonianus"], year:490, dynasty:"byzantine",
    role:"Architect of the Corpus Juris Civilis", bio:"Justinian's brilliant quaestor sacri palatii (from 529) who chaired the law commission producing the Codex Justinianus (529, revised 534), the Digest or Pandects (533 — 50 books of classical jurisprudence), and the Institutes (533). A Nika-riot target briefly dismissed (532), he died of the plague (~542/545).",
    njclNote:"Justinian's Code is famous; TRIBONIAN actually compiled it — name the jurist, not just the emperor.",
-   biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["justinian-i","procopius"], powerLinks:[],
+   biologicalLinks:[], maritalLinks:[], adoptiveLinks:[], associateLinks:["justinian-i","procopius-historian"], powerLinks:[],
    tags:["law","byzantine-continuity"], sources:["Wikipedia: Tribonian","Britannica: Tribonian"]},
   {id:"khosrow-i", displayName:"Khosrow I", fullName:"Khosrow I Anushirvan (Sasanian Shahanshah)", alternateNames:["Chosroes","Khosrau","Anushirvan"], year:512, dynasty:"byzantine",
    role:"Justinian's Persian rival", bio:"Greatest Sasanian king of kings (r. 531–579): he sacked Antioch (540) and deported its people to his model city 'Better-than-Antioch-of-Khosrow,' fought Justinian to the 'Eternal' and Fifty-Year Peaces, reformed taxation and the army, and sheltered Athens' last philosophers after 529 — remembered in Persian tradition as Anushirvan the Just.",
@@ -6582,7 +6582,7 @@ function fmtYear(y){
   if (y === null || y === undefined) return "?";
   return y < 0 ? (Math.abs(y) + " BC") : (y + " AD");
 }
-function fmtReign(e){ return fmtYear(e.reignStart) + " – " + fmtYear(e.reignEnd); }
+function fmtReign(e){ return fmtYear(e.accessionYear ?? e.reignStart) + " – " + fmtYear(e.reignEnd); }
 function scopeMeta(e){
   if (e.scopeTier === "core")      return {cls:"core", label:"Core NJCL"};
   if (e.scopeTier === "extension") return {cls:"ext",  label:"Extension"};
@@ -6933,7 +6933,7 @@ function renderTree(){
     nodeSvg += `<g class="node ${n.isMajor?'major':''} ${fav?'fav':''}" data-id="${n.id}" tabindex="0" role="button" aria-label="${esc(n.displayName)}, ${esc(d.label)}">
       <rect x="${p.x}" y="${p.y}" width="${NODE_W}" height="${NODE_H}" rx="8" fill="${d.color}" fill-opacity="${n.isMajor?0.96:0.8}" stroke="${d.color}" ${dc}/>
       <text class="nname" x="${mid}" y="${p.y+19}" text-anchor="middle" fill="#fff" font-size="13">${esc(n.displayName).slice(0,20)}</text>
-      <text class="ndate" x="${mid}" y="${p.y+34}" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">${fmtYear(n.reignStart)}–${fmtYear(n.reignEnd)}</text>
+      <text class="ndate" x="${mid}" y="${p.y+34}" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">${fmtYear(n.accessionYear ?? n.reignStart)}–${fmtYear(n.reignEnd)}</text>
       ${isNjclImportant(n)?`<text x="${p.x+NODE_W-7}" y="${p.y+13}" text-anchor="end" font-size="11" fill="#ffe9a8">★</text>`:""}
       ${fav?`<text x="${p.x+7}" y="${p.y+13}" font-size="11" fill="#ffd0d8">♥</text>`:""}
     </g>`;
@@ -6997,7 +6997,7 @@ function renderStacked(filtered){
       const star = isNjclImportant(e) ? ' <span class="badge star">★</span>' : '';
       const fav = STATE.favorites.has(e.id) ? ' ♥' : '';
       return `<button class="stack-card" data-id="${e.id}" style="border-left-color:${d.color}">
-        <span class="yr">${fmtYear(e.reignStart)}–${fmtYear(e.reignEnd)}</span>
+        <span class="yr">${fmtYear(e.accessionYear ?? e.reignStart)}–${fmtYear(e.reignEnd)}</span>
         <span><span class="nm">${esc(e.displayName)}</span>${star}${fav}<br><span class="tn">${esc(e.successionType)}</span></span>
       </button>`;
     }).join("");
@@ -7037,8 +7037,8 @@ function renderTimeline(){
 
   const rows = list.map(e => {
     const d = dyn(e.dynasty);
-    const left = xOf(e.reignStart);
-    const w = Math.max(14, (e.reignEnd - e.reignStart) * PX_PER_YEAR);
+    const left = xOf(e.accessionYear ?? e.reignStart);
+    const w = Math.max(14, (e.reignEnd - (e.accessionYear ?? e.reignStart)) * PX_PER_YEAR);
     const star = isNjclImportant(e) ? ' ★' : '';
     const fav = STATE.favorites.has(e.id) ? ' ♥' : '';
     return `<div class="tl-row">
@@ -7295,7 +7295,7 @@ function buildQuestions(){
   });
 
   emps.filter(e=>e.reignStart!=null && e.isMajor).forEach(e=>{
-    const yr = e.reignStart;
+    const yr = e.accessionYear ?? e.reignStart;
     const fmt = y => y<0?`${-y} BC`:`AD ${y}`;
     const wrongs = [yr-1,yr+1,yr+2,yr-2,yr+10,yr-10,yr+100].filter(w=>w!==yr);
     Q.push({
@@ -7460,7 +7460,7 @@ function renderCram(){
 function populateCompareSelects(){
   // Combine emperors and people for comparison
   const emperorOpts = chronoSort(DATA.emperors).map(e =>
-    `<option value="${e.id}">${esc(e.displayName)} (${fmtYear(e.reignStart)})</option>`);
+    `<option value="${e.id}">${esc(e.displayName)} (${fmtYear(e.accessionYear ?? e.reignStart)})</option>`);
   const peopleOpts = DATA.people.sort((a,b) => (a.year||0) - (b.year||0)).map(p =>
     `<option value="${p.id}">${esc(p.displayName)} (${fmtYear(p.year)})</option>`);
   const opts = [...emperorOpts, ...peopleOpts].join("");
@@ -7507,7 +7507,7 @@ function renderCompare(){
   const getFields = (e) => {
     if (isEmperor(e)) {
       return [
-        ["Reign", fmtReign(e)],
+        ["Reign", fmtReign(e) + ((e.accessionYear!=null && e.reignStart!=null && e.accessionYear!==e.reignStart) ? ` <span class="muted" style="font-size:.85em">(co-Augustus from ${fmtYear(e.reignStart)})</span>` : "")],
         ["Dynasty", esc(dyn(e.dynasty).label)],
         ["Region", val(e,"region")],
         ["Age at accession / death", `${e.ageAccession??"?"} / ${e.ageDeath??"?"}`],
@@ -7649,7 +7649,7 @@ function openPanel(id){
 
   const quick = [
     ["Common name", esc(e.displayName)],
-    ["Reign", fmtReign(e)],
+    ["Reign", fmtReign(e) + ((e.accessionYear!=null && e.reignStart!=null && e.accessionYear!==e.reignStart) ? ` (co-Augustus from ${fmtYear(e.reignStart)})` : "")],
     ["Age (accession/death)", `${e.ageAccession??"?"} / ${e.ageDeath??"?"}`],
     ["Dynasty", `<span style="color:${d.color};font-weight:700">${esc(d.label)}</span>`],
     ["Region / context", esc(e.region)],
