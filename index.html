@@ -4213,6 +4213,8 @@ function renderQuiz(){
     const right = sel === q.answer;
     QUIZ.results[QUIZ.i] = right;
     if (right) QUIZ.score++;
+    v.querySelector(".quiz-meta span:last-child").textContent = `Score: ${QUIZ.score}`;
+    const dot = v.querySelectorAll(".qp")[QUIZ.i]; if (dot) dot.classList.add(right?"right":"wrong");
     $$(".quiz-opt", v).forEach(x=>{
       x.disabled = true;
       if (x.dataset.o===q.answer) x.classList.add("correct");
