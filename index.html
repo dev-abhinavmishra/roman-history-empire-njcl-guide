@@ -356,7 +356,7 @@ dl.gloss dd .njcl{font-size:.74rem;color:var(--ink-faint);font-style:italic;disp
 .quiz-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;color:var(--ink-faint);font-size:.8rem}
 /* era strip */
 .era-strip{display:flex;gap:2px;height:52px;margin:.5rem 0}
-.era-seg{position:relative;background:var(--accent);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 .45rem;min-width:0}
+.era-seg{position:relative;background:var(--accent);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 .45rem;min-width:44px}
 .era-seg.ext{background:var(--accent2,#8a6f2c)}
 .era-seg.adv{background:#6b5b8a}
 .era-seg .era-label{color:#fff;font-size:.62rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -7095,10 +7095,10 @@ function renderPrep(){
   const eraStrip = (DATA.periods||[]).length ? (()=>{
     const P0 = DATA.periods;
     const lo = Math.min(...P0.map(p=>p.startYear)), hi = Math.max(...P0.map(p=>p.endYear));
-    const w = p => Math.max(2.5, Math.log10((p.endYear-p.startYear)+2)*28);
-    const segs = P0.map(p => {
+    const raw = P0.map(p => Math.log10((p.endYear-p.startYear)+2));
+    const segs = P0.map((p,i) => {
       const scopeCls = p.scope==='core'?'':(p.scope==='extension'?'ext':'adv');
-      return `<div class="era-seg ${scopeCls}" style="flex:0 0 ${w(p)}%" title="${esc(p.label)} (${p.startYear<0?-p.startYear+' BC':p.startYear}–${p.endYear<0?-p.endYear+' BC':p.endYear})">
+      return `<div class="era-seg ${scopeCls}" style="flex:${raw[i].toFixed(3)} 1 0" title="${esc(p.label)} (${p.startYear<0?-p.startYear+' BC':p.startYear}–${p.endYear<0?-p.endYear+' BC':p.endYear})">
         <span class="era-label">${esc(p.label)}</span>
         <span class="era-years">${p.startYear<0?-p.startYear+' BC':p.startYear} – ${p.endYear<0?-p.endYear+' BC':p.endYear}</span>
       </div>`;
