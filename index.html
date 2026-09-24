@@ -310,6 +310,50 @@ html[data-theme="dark"] #tooltip{background:#0c0a07;color:#ece6d8}
 .cmp-pickers select{flex:1 1 220px;padding:.5rem;border-radius:8px;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);font-size:.9rem;font-weight:600}
 .cmp-cols{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 @media(max-width:640px){.cmp-cols{grid-template-columns:1fr}}
+/* battles & glossary */
+.battle-stats{display:flex;gap:1.1rem;flex-wrap:wrap;align-items:center}
+.battle-stats .stat{font-family:var(--font-serif);font-size:1.5rem;color:var(--accent);font-weight:700}
+.battle-stats .stat small{display:block;font-family:var(--font-sans);font-size:.62rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.battle-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid var(--line-strong);flex:1 1 220px;min-width:180px}
+.battle-bar .seg{display:block;height:100%}
+.bres{font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .45rem;border-radius:5px;white-space:nowrap}
+.bres.victory{background:color-mix(in srgb,#2f7a45,transparent 82%);color:#2f7a45;border:1px solid #2f7a45}
+.bres.defeat{background:color-mix(in srgb,#b03c3c,transparent 82%);color:#b03c3c;border:1px solid #b03c3c}
+.bres.draw{background:color-mix(in srgb,#8a7d4a,transparent 82%);color:#8a6f2c;border:1px solid #8a6f2c}
+html[data-theme="dark"] .bres.victory{color:#7fd69a}
+html[data-theme="dark"] .bres.defeat{color:#e88}
+html[data-theme="dark"] .bres.draw{color:#d8c77e}
+.war-head{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap}
+.war-meta{font-size:.75rem;color:var(--ink-faint)}
+table.btl{width:100%;border-collapse:collapse;font-size:.82rem}
+table.btl th,table.btl td{border-bottom:1px solid var(--line);padding:.42rem .5rem;text-align:left;vertical-align:top}
+table.btl thead th{background:var(--bg-sunk);font-family:var(--font-serif);border-bottom:1px solid var(--line-strong);white-space:nowrap}
+table.btl tr:last-child td{border-bottom:0}
+table.btl .loc{display:block;font-size:.72rem;color:var(--ink-faint)}
+table.btl .njcl{display:block;font-size:.72rem;color:var(--accent);font-style:italic;margin-top:.15rem}
+table.btl .yr{white-space:nowrap;font-weight:700}
+.gloss-search{width:100%;max-width:420px;padding:.5rem .7rem;border-radius:8px;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);font-size:.9rem}
+.gloss-cat{border-top:3px solid var(--accent)}
+.gloss-cat h3{color:var(--accent)}
+dl.gloss{margin:0}
+dl.gloss dt{font-family:var(--font-serif);font-weight:700;color:var(--ink);margin-top:.5rem}
+dl.gloss dd{margin:.1rem 0 .35rem;font-size:.84rem;color:var(--ink-soft)}
+dl.gloss dd .njcl{font-size:.74rem;color:var(--ink-faint);font-style:italic;display:block}
+@media(max-width:640px){table.btl .why{display:none}}
+/* quiz */
+.quiz-progress{display:flex;gap:.35rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+.quiz-progress .qp{width:14px;height:14px;border-radius:3px;background:var(--bg-sunk);border:1px solid var(--line)}
+.quiz-progress .qp.right{background:#2f7a45;border-color:#2f7a45}
+.quiz-progress .qp.wrong{background:#b03c3c;border-color:#b03c3c}
+.quiz-q{font-family:var(--font-serif);font-size:1.25rem;margin:.4rem 0 .9rem;line-height:1.4}
+.quiz-opts{display:grid;gap:.55rem}
+.quiz-opt{text-align:left;padding:.7rem .85rem;border-radius:9px;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);font-size:.92rem;cursor:pointer;transition:border-color .12s}
+.quiz-opt:hover{border-color:var(--accent)}
+.quiz-opt.correct{background:color-mix(in srgb,#2f7a45,transparent 85%);border-color:#2f7a45}
+.quiz-opt.wrong{background:color-mix(in srgb,#b03c3c,transparent 85%);border-color:#b03c3c}
+.quiz-opt:disabled{cursor:default;opacity:.9}
+.quiz-explain{margin-top:.7rem;padding:.6rem .8rem;border-radius:8px;background:var(--bg-sunk);font-size:.85rem;color:var(--ink-soft)}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;color:var(--ink-faint);font-size:.8rem}
 .cmp-field{border-bottom:1px solid var(--line);padding:.4rem 0}
 .cmp-field .fl{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700}
 .cmp-field .fv{font-size:.88rem;color:var(--ink-soft)}
@@ -363,6 +407,9 @@ footer.app-foot{max-width:var(--maxw);margin:0 auto;padding:1.5rem 1rem 3rem;col
   <nav class="tabs" role="tablist" aria-label="Views">
     <button role="tab" aria-selected="true"  data-view="tree">Family Tree</button>
     <button role="tab" aria-selected="false" data-view="timeline">Timeline</button>
+    <button role="tab" aria-selected="false" data-view="battles">Battles &amp; Wars</button>
+    <button role="tab" aria-selected="false" data-view="glossary">Glossary</button>
+    <button role="tab" aria-selected="false" data-view="quiz">Quiz</button>
     <button role="tab" aria-selected="false" data-view="prep">NJCL Prep</button>
     <button role="tab" aria-selected="false" data-view="cram">Cram Sheet</button>
     <button role="tab" aria-selected="false" data-view="compare">Compare</button>
@@ -409,6 +456,15 @@ footer.app-foot{max-width:var(--maxw);margin:0 auto;padding:1.5rem 1rem 3rem;col
     </div>
     <div class="tl-stage" id="tlStage"></div>
   </section>
+
+  <!-- ============ BATTLES ============ -->
+  <section class="view" id="view-battles" role="tabpanel" aria-label="Battles and wars"></section>
+
+  <!-- ============ GLOSSARY ============ -->
+  <section class="view" id="view-glossary" role="tabpanel" aria-label="Glossary of terms"></section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="view" id="view-quiz" role="tabpanel" aria-label="Self-test quiz"></section>
 
   <!-- ============ PREP ============ -->
   <section class="view" id="view-prep" role="tabpanel" aria-label="NJCL preparation"></section>
@@ -561,6 +617,24 @@ DATA.periods = [
    PREP PROSE  (NJCL Prep view + Cram sheet)
    --------------------------------------------------------------------------- */
 DATA.prep = {
+  laws:[
+    {y:"27 / 23 BC", name:"First & Second Settlements", t:"Augustus builds the Principate: 'restored Republic' façade over tribunicia potestas + imperium proconsulare maius."},
+    {y:"18–17 BC", name:"Leges Iuliae (marriage)", t:"Augustus' moral laws — marriage incentives, adultery made a public crime."},
+    {y:"4 AD", name:"Lex Aelia Sentia", t:"Regulated manumission — minimum ages and conditions for freeing slaves."},
+    {y:"9 AD", name:"Lex Papia Poppaea", t:"Sharpened Augustus' marriage laws — penalties on the unmarried and childless."},
+    {y:"~70", name:"Lex de Imperio Vespasiani", t:"The surviving enabling act listing the new emperor's legal powers — proof the Principate was now statutory."},
+    {y:"212", name:"Constitutio Antoniniana", t:"Caracalla grants Roman citizenship to nearly all free inhabitants of the Empire."},
+    {y:"~250", name:"Decian Persecution edicts", t:"Decius requires all to sacrifice (libellus certificates) — first empire-wide persecution of Christians."},
+    {y:"301", name:"Edict on Maximum Prices", t:"Diocletian's price/wage ceiling — failed, but the best source for Roman goods & services."},
+    {y:"303", name:"Great Persecution edicts", t:"Diocletian's four edicts — churches destroyed, scriptures burned, clergy imprisoned; last great pagan persecution."},
+    {y:"311", name:"Edict of Tolentino/Toleration", t:"Galerius' deathbed edict ending persecution in the East."},
+    {y:"313", name:"Edict of Milan", t:"Constantine & Licinius legalize Christianity — toleration, not establishment."},
+    {y:"321", name:"Sunday law", t:"Constantine makes Sunday a day of rest — early church-state fusion."},
+    {y:"380", name:"Edict of Thessalonica ('Cunctos populos')", t:"Theodosius I makes Nicene Christianity the state religion."},
+    {y:"391–392", name:"Theodosian anti-pagan decrees", t:"Pagan sacrifice and temple worship banned — official end of the old religion."},
+    {y:"438", name:"Codex Theodosianus", t:"Theodosius II's compilation of imperial laws since Constantine — the first systematic code."},
+    {y:"529–534", name:"Corpus Iuris Civilis", t:"Justinian's Code, Digest, Institutes, Novels — the enduring foundation of Western law."}
+  ],
   topToKnow:["augustus","tiberius","claudius","nero","vespasian","titus","domitian","nerva","trajan","hadrian","marcus-aurelius","commodus","septimius-severus","caracalla","diocletian","constantine-i"],
   chains:[
     {title:"Julio-Claudians (the core five)", ids:["augustus","tiberius","caligula","claudius","nero"],
@@ -574,7 +648,19 @@ DATA.prep = {
     {title:"Severans", ids:["septimius-severus","caracalla","macrinus","elagabalus","severus-alexander"],
      note:"Septimius → sons Caracalla (+ murdered Geta) → usurper Macrinus interrupts → the Severan women restore the line with Elagabalus → cousin Severus Alexander, whose murder (235) starts the Crisis."},
     {title:"Tetrarchy → Constantine", ids:["diocletian","maximian","constantius-chlorus","galerius","constantine-i"],
-     note:"Diocletian's four rulers collapse into civil war; Constantine wins (Milvian Bridge 312, defeats Licinius 324) and reunifies — the end of core NJCL scope."}
+     note:"Diocletian's four rulers collapse into civil war; Constantine wins (Milvian Bridge 312, defeats Licinius 324) and reunifies — the end of core NJCL scope."},
+    {title:"Crisis of the 3rd Century → recovery", ids:["severus-alexander","maximinus-thrax","gordian-iii","valerian","gallienus","aurelian","diocletian"],
+     note:"Severus Alexander's murder (235) starts ~50 years of soldier-emperors: Maximinus Thrax, the Gordians, Valerian (captured by Persians 260!), Gallienus, then the Illyrian soldier-emperors (Claudius II, Aurelian 'Restitutor Orbis') who reunify, ending with Diocletian's stabilization (284)."},
+    {title:"Constantine's sons & the second founding", ids:["constantine-i","constantine-ii","constans","constantius-ii","julian","jovian"],
+     note:"Constantine's three sons fight each other; Julian 'the Apostate' (361-363) tries to restore paganism and dies in Persia; Jovian surrenders."},
+    {title:"Valentinian-Theodosian line", ids:["valentinian-i","valens","gratian","theodosius-i","arcadius","honorius"],
+     note:"Valentinian I (West) & Valens (East) — Valens dies at Adrianople 378; Theodosius I reunites briefly; his sons Arcadius (East) and Honorius (West) split the empire permanently at 395."},
+    {title:"Fall of the West: kingmakers", ids:["honorius","valentinian-iii","petronius-maximus","avitus","romulus-augustulus"],
+     note:"Honorius executes Stilicho (408) → Rome sacked 410; Valentinian III murders Aetius (454) then is killed (455) → Vandals sack Rome; a parade of puppet emperors under Ricimer ends with Romulus Augustulus deposed by Odoacer (476)."},
+    {title:"Justinian's reconquest", ids:["justinian-i","justin-ii","tiberius-ii","maurice"],
+     note:"Justinian (527-565) reconquers Africa & Italy (Belisarius, Narses), builds Hagia Sophia, codes the law; the exhausted empire slides under Justin II → Tiberius II → Maurice (executed 602, reign ends the line)."},
+    {title:"The Byzantine anchors", ids:["justinian-i","heraclius","basil-ii","alexios-i","constantine-xi"],
+     note:"Justinian (reconquest, law code) → Heraclius (defeats Persia, loses to Islam) → Basil II 'the Bulgar-Slayer' (peak) → Alexios I Komnenos (calls for Western help → Crusades) → Constantine XI (dies defending Constantinople 1453)."}
   ],
   confusions:[
     {title:"The four emperors of 69", body:"Galba (governor of Hispania Tarraconensis, old, killed by Praetorians) · Otho (ex-governor of Lusitania, took Poppaea from Nero, suicide after 1st Bedriacum) · Vitellius (commander in Germania Inferior, gluttonous, killed when Vespasian's troops took Rome) · Vespasian (the winner, in Judaea). Mnemonic: <b>G-O-V-V</b>."},
@@ -582,26 +668,46 @@ DATA.prep = {
     {title:"The Severan look-alikes", body:"<b>Caracalla</b> (citizenship edict 212, killed Geta, Baths of Caracalla) vs. <b>Elagabalus</b> (teenage Syrian sun-priest of the black stone) vs. <b>Severus Alexander</b> (last Severan, dominated by mother Julia Mamaea, murder starts the Crisis). The Severan women: Julia Domna, Maesa, Soaemias, Mamaea."},
     {title:"The tetrarchs", body:"<b>Augusti</b>: Diocletian (East, patron Jupiter) &amp; Maximian (West, patron Hercules). <b>Caesares</b>: Galerius (under Diocletian) &amp; Constantius Chlorus (under Maximian, father of Constantine)."},
     {title:"The Constantines", body:"<b>Constantius Chlorus</b> (tetrarch, Constantine's father) · <b>Constantine I 'the Great'</b> (Milvian Bridge, Christianity, Constantinople) · his sons <b>Constantine II, Constans, Constantius II</b> · and far later <b>Constantine XI</b>, the last emperor (1453)."},
-    {title:"The Theodosians / late split", body:"<b>Theodosius I</b> = last to rule both halves, made Christianity official. His sons split it: <b>Arcadius</b> (East) &amp; <b>Honorius</b> (West, moved capital to Ravenna, Rome sacked 410 under him). Don't confuse with <b>Theodosius II</b> (East, long reign, the Theodosian Walls/Code)."}
+    {title:"The Theodosians / late split", body:"<b>Theodosius I</b> = last to rule both halves, made Christianity official. His sons split it: <b>Arcadius</b> (East) &amp; <b>Honorius</b> (West, moved capital to Ravenna, Rome sacked 410 under him). Don't confuse with <b>Theodosius II</b> (East, long reign, the Theodosian Walls/Code)."},
+    {title:"The two Antonines", body:"<b>Antoninus Pius</b> (the quiet, peaceful adoptive emperor, 138–161) vs. <b>Marcus Aurelius</b> (his adoptive son-in-law, the philosopher-emperor, 161–180). Both Antonines; exam loves pairing them as 'the two Antonines.'"},
+    {title:"Nerva vs. Nero", body:"<b>Nero</b> (54–68) = the tyrant artist who ended the Julio-Claudians (fiddling, fire, persecutions). <b>Nerva</b> (96–98) = the old senator who STARTED the adoptive system — same root, opposite poles."},
+    {title:"Two Gordians in one year", body:"<b>Gordian I</b> (father) and <b>Gordian II</b> (son) reigned together ~3 weeks in Africa (238), then died; the Senate then made <b>Gordian III</b> (grandson) a Caesar, later emperor. Three Gordians, all in 238–244."},
+    {title:"Aurelian vs. Aurelius", body:"<b>Marcus Aurelius</b> = the Stoic philosopher-emperor (Meditations, 161–180). <b>Aurelian</b> = the tough soldier 'Restitutor Orbis' (270–275) who built Rome's walls and crushed Palmyra — same root, very different men."},
+    {title:"The three sons of Constantine", body:"<b>Constantine II</b> (died 340 fighting his brother), <b>Constans</b> (killed 350 by Magnentius), <b>Constantius II</b> (longest reign, sole emperor 353–361, an Arian). All three 'Augusti' from 337."},
+    {title:"Justinian's two Justins", body:"<b>Justin I</b> (his uncle, the career soldier-emperor 518–527 who made Justinian's rise possible) vs. <b>Justin II</b> (his nephew and successor, went mad). Justinian sat between two Justins."},
+    {title:"The Heraclii", body:"<b>Heraclius</b> (610–641, beat Persia, lost to Islam) vs. his sons <b>Heraklonas</b> and <b>Constans II</b> vs. <b>Constantine IV</b> — the dynasty that survived the Arab conquests."},
+    {title:"Valentinian I, II, III", body:"<b>Valentinian I</b> the tough soldier (364–375, West); <b>Valentinian II</b> his child-son (375–392, suicide/murdered); <b>Valentinian III</b> the Theodosian grandson (425–455, killed Aetius then murdered). Three emperors, one name."}
   ],
   chronoNotes:[
     {y:"27 BC", t:"Augustus founds the Principate — conventional start of the Empire."},
     {y:"9 AD", t:"Teutoburg Forest: Varus loses 3 legions to Arminius; Rhine becomes the frontier."},
+    {y:"43", t:"Claudius invades Britain (Aulus Plautius)."},
+    {y:"64", t:"Great Fire of Rome under Nero — Christians first persecuted."},
     {y:"68–69", t:"Nero's suicide ends the Julio-Claudians; Year of the Four Emperors."},
     {y:"70", t:"Titus sacks Jerusalem (destroys the Second Temple)."},
     {y:"79", t:"Vesuvius buries Pompeii & Herculaneum."},
+    {y:"80", t:"The Colosseum (Flavian Amphitheater) dedicated."},
     {y:"96", t:"Domitian assassinated; Nerva begins adoptive succession."},
     {y:"~117", t:"Empire at greatest extent under Trajan (Dacia, Mesopotamia)."},
+    {y:"122", t:"Hadrian's Wall begun in Britain."},
+    {y:"161–180", t:"Marcus Aurelius — the philosopher-emperor; Antonine Plague, Marcomannic Wars."},
     {y:"180", t:"Death of Marcus Aurelius; Commodus ends the 'good emperors.'"},
+    {y:"193", t:"Year of Five Emperors — Pertinax murdered, the throne auctioned to Didius Julianus, Septimius Severus wins."},
     {y:"212", t:"Constitutio Antoniniana: citizenship to ~all free inhabitants."},
     {y:"235–284", t:"Crisis of the Third Century (military anarchy)."},
+    {y:"260", t:"Valerian captured by Shapur I at Edessa — the Empire's lowest point."},
+    {y:"270–275", t:"Aurelian 'Restitutor Orbis' reunifies; builds the Aurelian Walls."},
     {y:"284/293", t:"Diocletian; the Tetrarchy."},
+    {y:"303", t:"Diocletian's Great Persecution — the last pagan attack on Christianity."},
     {y:"312", t:"Milvian Bridge — Constantine's vision, defeat of Maxentius."},
     {y:"313", t:"Edict of Milan legalizes Christianity."},
     {y:"325", t:"Council of Nicaea (Arian controversy)."},
     {y:"330", t:"Constantinople dedicated as the new capital. — END OF CORE NJCL SCOPE."},
+    {y:"361–363", t:"Julian 'the Apostate' tries to restore paganism; dies in Persia (extension)."},
     {y:"378", t:"Adrianople: Goths destroy Valens' army (extension)."},
+    {y:"380", t:"Edict of Thessalonica — Nicene Christianity made the state religion (extension)."},
     {y:"395", t:"Theodosius I dies; empire permanently split East/West (extension)."},
+    {y:"406", t:"Germanic peoples cross the Rhine en masse — the West's defenses break (extension)."},
     {y:"410 / 455", t:"Rome sacked by Visigoths (Alaric) / Vandals (Gaiseric) (extension)."},
     {y:"476", t:"Romulus Augustulus deposed by Odoacer — fall of the West (extension)."},
     {y:"1453", t:"Constantine XI dies; Constantinople falls — end of the Roman line (advanced)."}
@@ -609,7 +715,79 @@ DATA.prep = {
 };
 
 /* ---------------------------------------------------------------------------
-   EMPERORS
+   GLOSSARY — imperial offices, army, law, church, barbarian peoples
+   --------------------------------------------------------------------------- */
+DATA.glossary = [
+/* --- Imperial power & titulature --- */
+{term:"princeps", category:"Power & Titles", def:"'First citizen' — Augustus' chosen title styling his rule as leadership, not kingship; gives us 'Principate' (the early Empire's disguised monarchy).", njcl:"Augustus = princeps, never rex. The Principate (27 BC–284) vs the Dominate (284+) is THE periodization."},
+{term:"augustus", category:"Power & Titles", def:"'Revered' — the honorific granted to Octavian in 27 BC; became the supreme imperial title. A senior emperor was Augustus; junior colleagues were Caesares.", njcl:"In the Tetrarchy each half had an Augustus + a Caesar — know the pairing."},
+{term:"caesar (title)", category:"Power & Titles", def:"From Julius Caesar's name: under the Empire, 'Caesar' marked the designated heir / junior emperor; 'Augustus' the senior ruler.", njcl:"'Augustus senior, Caesar junior' — the tetrarchic formula."},
+{term:"imperator", category:"Power & Titles", def:"'Commander' — a victory acclamation by troops that Augustus folded into his name; by his reign it meant the Emperor's supreme military power.", njcl:"Acclamation by the army = how many emperors were made (esp. the 3rd century and 69)."},
+{term:"dominus et deus", category:"Power & Titles", def:"'Lord and god' — Domitian allegedly demanded this address; under Diocletian (284) the Dominate made the emperor an openly absolute, oriental-style monarch.", njcl:"The mask-off moment: Principate's 'first citizen' → Dominate's lord-and-god."},
+{term:"pontifex maximus", category:"Power & Titles", def:"Chief priest of Rome — held by every emperor from Augustus until Gratian refused it (~382); then passed to the Pope.", njcl:"The title linking pagan and papal Rome."},
+{term:"tribunicia potestas", category:"Power & Titles", def:"Tribunician power — sacrosanctity, veto, legislative initiative — the constitutional core of imperial authority; emperors dated their reigns by it (TR P).", njcl:"Coins read TR P + IMP + COS — decode the abbreviations."},
+{term:"consul (imperial)", category:"Power & Titles", def:"Still elected and dated the year, but honorific — real power lay with the emperor; emperors often held the consulship repeatedly.", njcl:"The Republic's offices continued as prestigious shells under the Empire."},
+{term:"rescript / edict", category:"Power & Titles", def:"A rescript was the emperor's written answer to a legal petition (binding precedent); an edict was a general proclamation with force of law.", njcl:"Imperial letters = law — e.g. Trajan's rescript to Pliny on Christians."},
+
+/* --- The imperial court & bureaucracy --- */
+{term:"comes / comites", category:"Court & Bureaucracy", def:"'Companion' — a court title that became a rank (comes rei militaris = field commander); later sources of 'count.'", njcl:"Late-antique nobility titles — comites, magistri, patricii."},
+{term:"magister militum", category:"Court & Bureaucracy", def:"'Master of the soldiers' — supreme army commander; by the late 4th–5th c. the real power behind puppet emperors (Stilicho, Aetius, Ricimer).", njcl:"The 'generalissimo' who actually ruled the late West."},
+{term:"praefectus praetorio", category:"Court & Bureaucracy", def:"Praetorian prefect — commander of the Praetorian Guard, later chief minister/judge (e.g. Sejanus under Tiberius, Ulpian the jurist).", njcl:"Sejanus is the classic praetorian-prefect cautionary tale."},
+{term:"praetoriani", category:"Court & Bureaucracy", def:"The Praetorian Guard — the emperor's household troops who made and unmade emperors (killed Pertinax, auctioned the throne to Didius Julianus, 193).", njcl:"'Sold the Empire at auction' — the Guard's most infamous act."},
+{term:"patricius", category:"Court & Bureaucracy", def:"Late-antique 'patrician' = a senior court dignity (not the old Republic class); Odoacer and Ricimer used it as kingmaker title.", njcl:"Ricimer 'patricius' ruled through puppet emperors 456–472."},
+{term:"vicarius / dioecesis", category:"Court & Bureaucracy", def:"Diocletian's admin: empire → praetorian prefectures → dioceses (led by vicarii) → provinces — a pyramid separating civil and military authority.", njcl:"Diocletian's bureaucracy tripled officials — the Dominate machine."},
+{term:"senatus (imperial)", category:"Court & Bureaucracy", def:"The Senate survived honorifically — confirmed emperors, ran Italy's courts — but real power moved to the emperor and his council (consilium).", njcl:"Claudius's speech admitting Gallic senators (48) is the famous inclusion debate."},
+{term:"frumentarii / agentes in rebus", category:"Court & Bureaucracy", def:"The imperial courier/spy service — frumentarii under the Principate, agentes in rebus in the Dominate.", njcl:"The Empire's internal intelligence network."},
+{term:"amicus / cubicularius", category:"Court & Bureaucracy", def:"'Friends' of the emperor advised him; cubicularii (chamberlains, often eunuchs) controlled access and grew powerful in the late court.", njcl:"Eunuch-chamberlain power is a late-empire trope (Eutropius under Honorius)."},
+{term:"foederati", category:"Court & Bureaucracy", def:"Allied peoples settled inside the Empire under treaty (foedus) to fight for Rome — Goths, Franks etc. — the army's late-antique backbone.", njcl:"The foedus system explains the 'barbarian generals' (Stilicho, Aetius's Huns)."},
+
+/* --- Army & frontier --- */
+{term:"legio (imperial)", category:"Army", def:"Imperial legion of ~5,000 citizens in 10 cohorts; supported by auxilia (non-citizen troops earning citizenship). ~28-30 legions under Augustus.", njcl:"Legions numbered (Legio VII, X Fretensis) — auxiliaries = the citizenship path."},
+{term:"auxilia", category:"Army", def:"Non-citizen auxiliary troops (cavalry, archers, light infantry) recruited from provincials; citizenship on discharge after ~25 years.", njcl:"The diploma grant = how provincials became Roman citizens."},
+{term:"limes", category:"Army", def:"The fortified frontier — Rhine/Danube river lines, Hadrian's Wall in Britain, the Limes Germanicus.", njcl:"Hadrian's Wall = the iconic limes; Antonine Wall its brief northern cousin."},
+{term:"castrum", category:"Army", def:"The marching camp — the standardized fortified rectangle every Roman army built each night.", njcl:"Know 'castra' = camp; Chester/Lancaster place names derive from it."},
+{term:"comitatenses / limitanei", category:"Army", def:"Diocletian/Constantine's split: comitatenses = the mobile field army, limitanei = static frontier garrisons.", njcl:"The two-tier late-Roman army — mobile reserve vs border militia."},
+{term:"vexillatio", category:"Army", def:"A detachment drawn from a legion for a specific task — the modular building block of imperial campaigns.", njcl:"Trajan's Column shows vexillations on the move."},
+{term:"aquilifer / signifer", category:"Army", def:"The eagle-bearer (aquilifer) guarded the legion's aquila; the signifer carried the century's signum.", njcl:"Losing the eagle = disgrace — Varus at Teutoburg lost three."},
+{term:"cataphract / clibanarius", category:"Army", def:"Heavily armored cavalry borrowed from the Parthians/Sassanids — the late-antique proto-knight.", njcl:"Adrianople (378) showed cavalry beating legions — the infantry era ending."},
+{term:"triumphus (imperial)", category:"Army", def:"Under the Empire only the emperor (or his family) could triumph — the honor was now imperial monopoly; lesser commanders got ornamenta triumphalia.", njcl:"No more rival triumphs — a marker of monarchy vs Republic."},
+
+/* --- Law, taxes & economy --- */
+{term:"constitutio antoniniana", category:"Law & Economy", def:"Caracalla's edict of 212 granting Roman citizenship to nearly all free inhabitants of the Empire.", njcl:"The citizenship endpoint — 'everyone's a citizen' = 212."},
+{term:"ius / lex / edictum", category:"Law & Economy", def:"Law's sources: leges (statutes), imperial constitutions, jurists' opinions (responsa). Late codes: Theodosian (438), Justinian (529–34).", njcl:"Theodosian Code (438) vs Corpus Juris Civilis (529–534) — know both."},
+{term:"corpus iuris civilis", category:"Law & Economy", def:"Justinian's law compilation — the Digest, Code, Institutes, Novels (529–534) — the foundation of later European law.", njcl:"Justinian's most lasting legacy — codified Roman law."},
+{term:"praefectura", category:"Law & Economy", def:"Praetorian prefecture — the top civil admin unit of the Dominate (Gauls, Italy, Illyricum, East).", njcl:"Diocletian's four prefectures matched his four tetrarchs."},
+{term:"annona", category:"Law & Economy", def:"The grain/tax dole — free grain (later bread, oil, wine) for Rome's citizens and the army's supply system.", njcl:"The 'bread' of 'bread and circuses' (panem et circenses, Juvenal)."},
+{term:"indictio", category:"Law & Economy", def:"The tax cycle — 15-year indiction cycles from 312 on; the standard late-antique way to count years.", njcl:"Late-Roman dating: consul + indiction + regnal year."},
+{term:"solidus", category:"Law & Economy", def:"Constantine's gold coin (~309), the stable high-value currency of late antiquity — successor to the debased denarius.", njcl:"Aureus → solidus: the coinage shift marking the new era."},
+{term:"coloni", category:"Law & Economy", def:"Tenant farmers bound to their estates by law (debt & land registration) — the proto-serf of the Dominate's declining countryside.", njcl:"Coloni tied to land = how the empire turned free farmers into serfs."},
+{term:"publicani (later)", category:"Law & Economy", def:"Under the Empire, tax farming shrank; the bureaucracy assessed and collected directly — though publicani persisted in some taxes.", njcl:"Republican tax-farmers → imperial civil service collection."},
+
+/* --- Church & late-antique religion --- */
+{term:"episcopus", category:"Church", def:"Bishop — overseer of a city's church; Rome, Alexandria, Antioch, Constantinople, Jerusalem were the great sees.", njcl:"The five patriarchates = pentarchy."},
+{term:"patriarcha", category:"Church", def:"Patriarch — the leading bishop (Rome = Pope, Constantinople, Alexandria, Antioch, Jerusalem).", njcl:"Pope Leo I = the patriarch who met Attila (452)."},
+{term:"ecumenical council", category:"Church", def:"Universal Church councils called by emperors to fix doctrine — Nicaea I (325), Constantinople I (381), Ephesus (431), Chalcedon (451).", njcl:"Nicaea 325 (Arianism) and Chalcedon 451 (two natures) are the two to know cold."},
+{term:"Arianism", category:"Church", def:"Arius' doctrine that the Son was created and subordinate to the Father; condemned at Nicaea (325) but persisted among Germanic peoples.", njcl:"Goths & Vandals were Arian — religious friction inside the Empire."},
+{term:"heresy / schism", category:"Church", def:"Heresy = false doctrine (Arianism, Donatism, Monophysitism); schism = institutional split (1054 East–West, but earlier Acacian schism 484–519).", njcl:"Constantine's reign = when church politics became imperial politics."},
+{term:"Edict of Milan", category:"Church", def:"313 — Constantine and Licinius legalized Christianity (ending persecution); NOT making it the official religion (that was Theodosius I, 380).", njcl:"Milan 313 toleration vs Thessalonica 380 officialdom — the exam's favorite pair."},
+{term:"Edict of Thessalonica", category:"Church", def:"380 — Theodosius I made Nicene Christianity the state religion of the Empire ('Cunctos populos').", njcl:"380 = Christianity official; paganism then proscribed."},
+{term:"Donatism", category:"Church", def:"North African schism holding that sacraments by traditor clergy were invalid — a major early Church conflict Constantine tried to settle.", njcl:"Constantine's first church headache — Arles 314 addressed it."},
+{term:"Manichaeism", category:"Church", def:"Dualist religion founded by Mani (3rd c.) — light vs darkness; Augustine flirted with it before converting.", njcl:"Augustine's pre-conversion religion — good biographical anchor."},
+
+/* --- Peoples & neighbors --- */
+{term:"Goths", category:"Peoples", def:"Germanic confederation splitting into Visigoths (Balkans/Italy/Gaul/Spain) and Ostrogoths (Italy under Theodoric); crossed the Danube 376, sacked Rome 410.", njcl:"Adrianople 378 → sack of Rome 410 → kingdoms in Italy & Spain."},
+{term:"Vandals", category:"Peoples", def:"Germanic people who crossed the Rhine (406), reached Africa (429), took Carthage (439) and sacked Rome in 455 — under Gaiseric.", njcl:"'Vandalism' = their name; Africa's loss broke the West's grain supply."},
+{term:"Huns", category:"Peoples", def:"Nomadic confederation under Attila — invaded Gaul (451, stopped at the Catalaunian Plains) and Italy (452, turned back at the Mincio).", njcl:"Attila 'the Scourge of God' — 451 Châlons and Leo I's embassy."},
+{term:"Franks", category:"Peoples", def:"Germanic people who settled Gaul; Clovis (481–511) united them, converted to Catholicism, founded Merovingian France.", njcl:"Clovis's conversion = why France became 'the eldest daughter of the Church.'"},
+{term:"Sassanids", category:"Peoples", def:"The Persian dynasty (224–651) replacing the Parthians — Rome's great eastern rival; Shapur I captured Valerian (260), Shapur II fought Julian (363).", njcl:"Rome vs Persia was the superpower duel — Carrhae, Edessa, Julian's death."},
+{term:"Parthians", category:"Peoples", def:"Rome's eastern rival till 224 — cataphract cavalry and horse-archers; Crassus's Carrhae disaster (53 BC) was their most famous win.", njcl:"Carrhae + the 'Parthian shot' = the two facts they test."},
+{term:"Alans / Suebi / Burgundians", category:"Peoples", def:"Lesser Germanic peoples who also crossed the Rhine (406) — Suebi to Spain, Burgundians to the Rhône valley (a law-code source).", njcl:"The 406 Rhine crossing opened the West to settlement."},
+{term:"Himyar / Axum", category:"Peoples", def:"Trade states of south Arabia and Ethiopia — Axum's Ezana converted to Christianity; Rome traded via the Red Sea.", njcl:"Axum = the African Christian power; useful for eastern-trade questions."},
+{term:"Bucellarii", category:"Peoples", def:"Private armies of generals in the late Empire — personal retainers loyal to the commander, not the state (Belisarius's bucellarii).", njcl:"The privatized army that fueled warlordism and Byzantine faction."}
+];
+
+/* ---------------------------------------------------------------------------
+   EMPERORS — the dataset (core: Augustus → Constantine; then extension/advanced)
    --------------------------------------------------------------------------- */
 DATA.emperors = [
 {
@@ -3137,6 +3315,12 @@ function renderPrep(){
 
   const chrono = P.chronoNotes.map(n => `<tr><th style="white-space:nowrap">${esc(n.y)}</th><td>${esc(n.t)}</td></tr>`).join("");
 
+  const lawsCard = (P.laws && P.laws.length) ? `
+    <h2 style="margin:1.2rem 0 .4rem">Key edicts &amp; law codes to know</h2>
+    <div class="card"><table class="cmp"><thead><tr><th>Year</th><th>Law / Edict / Code</th><th>What it did</th></tr></thead><tbody>${
+      P.laws.map(l=>`<tr><th style="white-space:nowrap">${esc(l.y)}</th><td><strong>${esc(l.name)}</strong></td><td>${esc(l.t)}</td></tr>`).join("")
+    }</tbody></table></div>` : "";
+
   // compare-dynasties succession table
   const succTable = `<table class="cmp"><thead><tr><th>Period</th><th>How power transferred</th></tr></thead><tbody>${
     DATA.dynasties.map(d => `<tr><td><strong style="color:${d.color}">${esc(d.label)}</strong></td><td>${esc(d.succession)}</td></tr>`).join("")
@@ -3159,6 +3343,8 @@ function renderPrep(){
     <h2 style="margin:1.2rem 0 .4rem">Common confusion warnings</h2>
     <div class="grid cols-2">${confusions}</div>
 
+    ${lawsCard}
+
     <div class="grid cols-2" style="margin-top:1.2rem">
       <div class="card"><h3>Chronology turning points</h3>
         <table class="cmp"><tbody>${chrono}</tbody></table></div>
@@ -3167,6 +3353,271 @@ function renderPrep(){
     </div>`;
 
   $$(".lk", $("#view-prep")).forEach(l => l.addEventListener("click", () => openPanel(l.dataset.id)));
+}
+
+/* ============================================================================
+   5d2. RENDER — BATTLES & WARS
+   ============================================================================ */
+const RESULT_STYLE = {victory:["Victory","#2f7a45"],defeat:["Defeat","#b03c3c"],draw:["Indecisive","#8a6f2c"]};
+function renderBattles(){
+  const B = (DATA.battles||[]).slice().sort((a,b)=>a.year-b.year);
+  if (!B.length){ $("#view-battles").innerHTML = `<div class="section-intro"><h2>Battles &amp; Wars</h2><p>No battle data loaded.</p></div>`; return; }
+  const v = B.filter(b=>b.result==="victory").length,
+        l = B.filter(b=>b.result==="defeat").length,
+        d = B.filter(b=>b.result==="draw").length;
+  const warOrder = [], byWar = {};
+  B.forEach(b => { const w = b.war||"Other"; if (!byWar[w]){ byWar[w]=[]; warOrder.push(w); } byWar[w].push(b); });
+  const eraOf = w => (byWar[w][0] && byWar[w][0].era) || "";
+  const rows = b => `<tr>
+    <td class="yr">${esc(fmtYear(b.year))}</td>
+    <td><strong>${esc(b.name)}</strong>${b.location?`<span class="loc">${esc(b.location)}</span>`:""}</td>
+    <td><span class="bres ${b.result}">${esc(RESULT_STYLE[b.result]?.[0]||b.result)}</span></td>
+    <td>${esc(b.roman||"—")}<br><span class="muted" style="font-size:.74rem">vs. ${esc(b.enemy||"—")}</span></td>
+    <td class="why">${esc(b.significance||"")}${b.njcl?`<span class="njcl">★ ${esc(b.njcl)}</span>`:""}</td>
+  </tr>`;
+  const warCards = warOrder.map(w => {
+    const list = byWar[w], d0 = dyn(eraOf(w));
+    const yrs = list.map(x=>x.year), rng = `${fmtYear(Math.min(...yrs))} – ${fmtYear(Math.max(...yrs))}`;
+    const wv = list.filter(x=>x.result==="victory").length, wl = list.filter(x=>x.result==="defeat").length;
+    return `<div class="card accentL" style="border-left-color:${d0.color}">
+      <h3 class="war-head">${esc(w)}
+        <span class="chip" style="background:${d0.color};color:#fff;border-color:transparent;cursor:default">${esc(d0.label)}</span>
+        <span class="war-meta">${list.length} battle${list.length>1?"s":""} · ${rng} · ${wv}W/${wl}L</span></h3>
+      <table class="btl"><thead><tr><th>Year</th><th>Battle</th><th>Result</th><th>Rome vs.</th><th>Why it matters</th></tr></thead>
+      <tbody>${list.map(rows).join("")}</tbody></table>
+    </div>`;
+  }).join("");
+  const total = B.length, pv = Math.round(v/total*100), pl = Math.round(l/total*100), pd = 100-pv-pl;
+  $("#view-battles").innerHTML = `
+    <div class="section-intro">
+      <h2>Battles &amp; Wars — The Empire</h2>
+      <p>Every major imperial battle from Actium to Constantinople, grouped by war and dynasty. <em>Result is from Rome's point of view.</em></p>
+    </div>
+    <div class="card accentL"><div class="battle-stats">
+      <span class="stat">${total}<small>Battles</small></span>
+      <span class="stat" style="color:#2f7a45">${v}<small>Victories</small></span>
+      <span class="stat" style="color:#b03c3c">${l}<small>Defeats</small></span>
+      <span class="stat" style="color:#8a6f2c">${d}<small>Indecisive</small></span>
+      <span class="battle-bar" title="Record: ${pv}% victory / ${pl}% defeat / ${pd}% indecisive">
+        <span class="seg" style="width:${pv}%;background:#2f7a45"></span><span class="seg" style="width:${pl}%;background:#b03c3c"></span><span class="seg" style="width:${pd}%;background:#8a6f2c"></span>
+      </span>
+    </div></div>
+    <div class="grid">${warCards}</div>`;
+}
+
+/* ============================================================================
+   5d3. RENDER — GLOSSARY
+   ============================================================================ */
+function renderGlossary(){
+  const G = DATA.glossary||[];
+  if (!G.length){ $("#view-glossary").innerHTML = `<div class="section-intro"><h2>Glossary</h2><p>No glossary data loaded.</p></div>`; return; }
+  const cats = [];
+  G.forEach(g => { if (!cats.includes(g.category)) cats.push(g.category); });
+  const catCards = cats.map(c => {
+    const items = G.filter(g => g.category===c);
+    return `<div class="card gloss-cat" data-cat="${esc(c)}"><h3>${esc(c)}</h3>
+      <dl class="gloss">${items.map(g => `
+        <dt>${esc(g.term)}</dt><dd>${esc(g.def)}${g.njcl?`<span class="njcl">★ ${esc(g.njcl)}</span>`:""}</dd>`).join("")}</dl>
+    </div>`;
+  }).join("");
+  $("#view-glossary").innerHTML = `
+    <div class="section-intro">
+      <h2>Glossary — Imperial Offices, Titles &amp; Terms</h2>
+      <p>The vocabulary of the Empire: the Principate's offices, court titles, army ranks, law codes, Church terms, and barbarian peoples — the words certamen questions are built from.</p>
+      <p style="margin-top:.5rem"><input class="gloss-search" id="glossSearch" type="search" placeholder="Filter terms…" aria-label="Filter glossary terms"></p>
+    </div>
+    <div class="grid cols-2">${catCards}</div>`;
+  const inp = $("#glossSearch");
+  if (inp) inp.addEventListener("input", () => {
+    const q = inp.value.trim().toLowerCase();
+    $$(".gloss-cat", $("#view-glossary")).forEach(card => {
+      let any = false;
+      $$("dt", card).forEach(dt => {
+        const dd = dt.nextElementSibling;
+        const hit = !q || (dt.textContent+" "+(dd?dd.textContent:"")).toLowerCase().includes(q);
+        dt.style.display = hit?"":"none"; if (dd) dd.style.display = hit?"":"none";
+        any = any || hit;
+      });
+      card.style.display = any?"":"none";
+    });
+  });
+}
+
+/* ============================================================================
+   5d4. RENDER — QUIZ (self-test)
+   ============================================================================ */
+const QUIZ = {qs:[], i:0, score:0, results:[]};
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function sample(a,n){ return shuffle(a.slice()).slice(0,n); }
+function uniqBy(arr, key){ const s=new Set(); return arr.filter(x=>{const k=key(x); if(s.has(k)) return false; s.add(k); return true;}); }
+
+function buildQuestions(){
+  const Q = [];
+  const emps = DATA.emperors.filter(e=>e.inNjclCoreScope!==false);
+  const ppl  = DATA.people||[];
+  const named = emps.concat(ppl.filter(p=>p.njclNote||p.bio));
+
+  emps.filter(e=>e.role || e.njclImportance).forEach(e=>{
+    const clue = e.role || e.njclImportance;
+    Q.push({
+      q:`Which emperor: ${clue.length>140?clue.slice(0,140)+'…':clue}`,
+      answer:e.displayName,
+      options:sample(named.filter(n=>n.id!==e.id),3).map(n=>n.displayName).concat(e.displayName),
+      explain:`${e.displayName} — ${dyn(e.dynasty).label}. ${e.njclImportance||''}`
+    });
+  });
+
+  emps.forEach(e=>{
+    Q.push({
+      q:`${e.displayName} belonged to which dynasty?`,
+      answer:dyn(e.dynasty).label,
+      options:sample(DATA.dynasties.filter(d=>d.key!==e.dynasty),3).map(d=>d.label).concat(dyn(e.dynasty).label),
+      explain:`${e.displayName}: ${dyn(e.dynasty).label} — ${fmtReign(e)}.`
+    });
+  });
+
+  emps.filter(e=>e.successor && byId(e.successor)).forEach(e=>{
+    Q.push({
+      q:`Who succeeded ${e.displayName}?`,
+      answer:byId(e.successor).displayName,
+      options:sample(named.filter(n=>n.id!==e.id && n.id!==e.successor),3).map(n=>n.displayName).concat(byId(e.successor).displayName),
+      explain:`${e.displayName} → ${byId(e.successor).displayName}.`
+    });
+  });
+  emps.filter(e=>e.predecessor && byId(e.predecessor)).forEach(e=>{
+    Q.push({
+      q:`Who preceded ${e.displayName}?`,
+      answer:byId(e.predecessor).displayName,
+      options:sample(named.filter(n=>n.id!==e.id && n.id!==e.predecessor),3).map(n=>n.displayName).concat(byId(e.predecessor).displayName),
+      explain:`${byId(e.predecessor).displayName} → ${e.displayName}.`
+    });
+  });
+
+  emps.filter(e=>e.reignStart!=null && e.isMajor).forEach(e=>{
+    const yr = e.reignStart;
+    const fmt = y => y<0?`${-y} BC`:`AD ${y}`;
+    const wrongs = [yr-1,yr+1,yr+2,yr-2,yr+10,yr-10,yr+100].filter(w=>w!==yr);
+    Q.push({
+      q:`In what year did ${e.displayName}'s reign begin?`,
+      answer:fmt(yr),
+      options:sample(wrongs,3).map(fmt).concat(fmt(yr)),
+      explain:`${e.displayName} reigned ${fmtReign(e)}.`
+    });
+  });
+
+  // how they died
+  emps.filter(e=>e.deathMethod && e.isMajor).forEach(e=>{
+    Q.push({
+      q:`How did ${e.displayName} die?`,
+      answer:e.deathMethod,
+      options:sample(emps.filter(x=>x.id!==e.id && x.deathMethod),3).map(x=>x.deathMethod).concat(e.deathMethod),
+      explain:`${e.displayName}: ${e.deathMethod}`
+    });
+  });
+
+  (DATA.battles||[]).forEach(b=>{
+    const others = sample((DATA.battles||[]).filter(x=>x.id!==b.id),3);
+    if (b.enemy) Q.push({
+      q:`The Battle of ${b.name} (${fmtYear(b.year)}) was fought against which enemy?`,
+      answer:b.enemy,
+      options:others.map(o=>o.enemy).filter(Boolean).concat(b.enemy),
+      explain:`${b.name}: ${b.significance||''}`
+    });
+    if (b.roman) Q.push({
+      q:`Who commanded Rome at ${b.name} (${fmtYear(b.year)})?`,
+      answer:b.roman,
+      options:sample(named,3).map(n=>n.displayName).concat(b.roman),
+      explain:`${b.name} — ${b.significance||''}`
+    });
+  });
+
+  (DATA.glossary||[]).forEach(g=>{
+    const others = sample((DATA.glossary||[]).filter(x=>x.term!==g.term),3);
+    Q.push({
+      q:`What is a '${g.term}'?`,
+      answer:g.def,
+      options:others.map(o=>o.def).concat(g.def),
+      explain:`${g.term}: ${g.def}`
+    });
+  });
+
+  (DATA.prep.laws||[]).forEach(l=>{
+    const others = sample(DATA.prep.laws.filter(x=>x.name!==l.name),3);
+    Q.push({
+      q:`What did the ${l.name} (${l.y}) do?`,
+      answer:l.t,
+      options:others.map(o=>o.t).concat(l.t),
+      explain:`${l.name}: ${l.t}`
+    });
+  });
+
+  return shuffle(uniqBy(Q.filter(q=>q.options.length>=4 && new Set(q.options).size>=4), x=>x.q));
+}
+
+function renderQuiz(){
+  const v = $("#view-quiz");
+  if (!QUIZ.qs.length){
+    v.innerHTML = `
+      <div class="section-intro">
+        <h2>Quiz — self-test like certamen</h2>
+        <p>Random multiple-choice questions generated from this app's dataset — emperors, dynasties, dates, battles, glossary, and laws. Answer, see the explanation, continue.</p>
+      </div>
+      <div class="card accentL" style="max-width:560px">
+        <h3>Start a round</h3>
+        <p class="muted">How many questions?</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem">
+          <button class="toggle" data-qz="10">10</button>
+          <button class="toggle" data-qz="20">20</button>
+          <button class="toggle" data-qz="40">40 (full exam)</button>
+        </div>
+      </div>`;
+    $$("[data-qz]", v).forEach(b=>b.addEventListener("click",()=>{
+      QUIZ.qs = sample(buildQuestions(), +b.dataset.qz);
+      QUIZ.i = 0; QUIZ.score = 0; QUIZ.results = [];
+      renderQuiz();
+    }));
+    return;
+  }
+  if (QUIZ.i >= QUIZ.qs.length){
+    const pct = Math.round(QUIZ.score/QUIZ.qs.length*100);
+    const wrongs = QUIZ.results.map((r,ix)=>!r?`<li><strong>Q${ix+1}.</strong> ${esc(QUIZ.qs[ix].q)}<br><span class="muted">Answer: ${esc(QUIZ.qs[ix].answer)} — ${esc(QUIZ.qs[ix].explain||'')}</span></li>`:"").join("");
+    v.innerHTML = `
+      <div class="section-intro"><h2>Quiz complete</h2></div>
+      <div class="card accentL" style="max-width:560px">
+        <div class="battle-stats">
+          <span class="stat" style="color:${pct>=70?'#2f7a45':'#b03c3c'}">${pct}%<small>Score</small></span>
+          <span class="stat">${QUIZ.score}/${QUIZ.qs.length}<small>Correct</small></span>
+        </div>
+        <p style="margin-top:.8rem"><button class="toggle" id="qzAgain">Play again</button></p>
+      </div>
+      ${wrongs?`<div class="card"><h3>Review your misses</h3><ol style="font-size:.85rem">${wrongs}</ol></div>`:''}`;
+    $("#qzAgain", v)?.addEventListener("click",()=>{QUIZ.qs=[];renderQuiz();});
+    return;
+  }
+  const q = QUIZ.qs[QUIZ.i];
+  const opts = shuffle(q.options.slice());
+  v.innerHTML = `
+    <div class="card" style="max-width:680px;margin:0 auto">
+      <div class="quiz-meta"><span>Question ${QUIZ.i+1} / ${QUIZ.qs.length}</span><span>Score: ${QUIZ.score}</span></div>
+      <div class="quiz-progress">${QUIZ.qs.map((_,i)=>`<span class="qp ${QUIZ.results[i]===true?'right':QUIZ.results[i]===false?'wrong':''}"></span>`).join("")}</div>
+      <div class="quiz-q">${esc(q.q)}</div>
+      <div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>
+      <div id="qzExplain"></div>
+    </div>`;
+  $$(".quiz-opt", v).forEach(b=>b.addEventListener("click",()=>{
+    const sel = b.dataset.o;
+    const right = sel === q.answer;
+    QUIZ.results[QUIZ.i] = right;
+    if (right) QUIZ.score++;
+    $$(".quiz-opt", v).forEach(x=>{
+      x.disabled = true;
+      if (x.dataset.o===q.answer) x.classList.add("correct");
+      if (x===b && !right) x.classList.add("wrong");
+    });
+    $("#qzExplain", v).innerHTML = `<div class="quiz-explain"><strong>${right?'Correct.':'Answer: '+esc(q.answer)}</strong> ${esc(q.explain||'')}</div>
+      <p style="margin-top:.7rem"><button class="toggle" id="qzNext">${QUIZ.i+1<QUIZ.qs.length?'Next →':'Finish'}</button></p>`;
+    $("#qzNext", v).addEventListener("click",()=>{QUIZ.i++;renderQuiz();});
+  }));
 }
 
 /* ============================================================================
@@ -3626,6 +4077,9 @@ function renderAll(){
   renderLegend();
   renderTree();
   renderTimeline();
+  renderBattles();
+  renderGlossary();
+  renderQuiz();
   renderPrep();
   renderCram();
   renderCompare();
