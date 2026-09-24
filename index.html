@@ -7319,13 +7319,13 @@ function buildQuestions(){
   (DATA.battles||[]).forEach(b=>{
     const others = sample((DATA.battles||[]).filter(x=>x.id!==b.id),3);
     if (b.enemy) Q.push({
-      q:`${b.name} (${fmtYear(b.year)}) was fought against which enemy?`,
+      q:`${b.name.replace(/\s*\(\s*\d+\s*(BC|AD|BCE|CE)?\s*\)\s*$/i,'')} (${fmtYear(b.year)}) was fought against which enemy?`,
       answer:b.enemy,
       options:others.map(o=>o.enemy).filter(Boolean).concat(b.enemy),
       explain:`${b.name}: ${b.significance||''}`
     });
     if (b.roman) Q.push({
-      q:`Who commanded Rome at ${/^battle of /i.test(b.name)?'the ':''}${b.name} (${fmtYear(b.year)})?`,
+      q:`Who commanded Rome at ${/^battle of /i.test(b.name)?'the ':''}${b.name.replace(/\s*\(\s*\d+\s*(BC|AD|BCE|CE)?\s*\)\s*$/i,'')} (${fmtYear(b.year)})?`,
       answer:b.roman,
       options:sample(named,3).map(n=>n.displayName).concat(b.roman),
       explain:`${b.name} — ${b.significance||''}`
