@@ -1931,7 +1931,7 @@ DATA.emperors = [
   alternateNames:["Carus"],
   reignStart:282, reignEnd:283, accessionYear:282, deathYear:283, ageAccession:60, ageDeath:61,
   dynasty:"crisis", region:"Unified Empire",
-  predecessor:"probus", successor:"numerian", coEmperors:["Carinus (son)","Numerian (son)"],
+  predecessor:"probus", successor:"numerian", coEmperors:["carinus","numerian"],
   father:null, mother:null, spouses:[], children:["Carinus","Numerian"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Carinus & Numerian (sons)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2012,7 +2012,7 @@ DATA.emperors = [
   alternateNames:["Constantius I","Chlorus (\"the Pale\")"],
   reignStart:293, reignEnd:306, accessionYear:305, deathYear:306, ageAccession:55, ageDeath:56,
   dynasty:"tetrarchy", region:"Western Roman Empire",
-  predecessor:"maximian", successor:"constantine-i", coEmperors:["galerius","severus-ii-note"],
+  predecessor:"maximian", successor:"constantine-i", coEmperors:["galerius","severus-ii"],
   father:null, mother:null, spouses:["Helena (mother of Constantine)","Theodora (stepdaughter of Maximian)"],
   children:["Constantine I (with Helena)","several children with Theodora"],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Constantine I (son)","Helena (consort)","Maximian (his Augustus / father-in-law by Theodora)"],
@@ -2040,7 +2040,7 @@ DATA.emperors = [
   alternateNames:["Galerius"],
   reignStart:293, reignEnd:311, accessionYear:305, deathYear:311, ageAccession:45, ageDeath:51,
   dynasty:"tetrarchy", region:"Eastern Roman Empire",
-  predecessor:"diocletian", successor:"licinius", coEmperors:["constantius-chlorus","maximinus-daia-note","licinius"],
+  predecessor:"diocletian", successor:"licinius", coEmperors:["constantius-chlorus","maximin-daia","licinius"],
   father:null, mother:"Romula", spouses:["Valeria (daughter of Diocletian)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Diocletian (father-in-law)"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -2448,7 +2448,7 @@ DATA.emperors = [
   alternateNames:["Honorius"],
   reignStart:393, reignEnd:423, accessionYear:395, deathYear:423, ageAccession:10, ageDeath:38,
   dynasty:"theodosian", region:"Western Roman Empire",
-  predecessor:"theodosius-i", successor:"johannes", coEmperors:["arcadius","constantius-iii-note"],
+  predecessor:"theodosius-i", successor:"johannes", coEmperors:["arcadius","constantius-iii"],
   father:"Theodosius I", mother:"Galla", spouses:["Maria","Thermantia (both daughters of Stilicho)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Arcadius (brother, East)","Galla Placidia (half-sister)","Valentinian III (nephew, successor)","Stilicho (general & father-in-law)"],
   maritalLinks:[], biologicalLinks:["theodosius-i","arcadius"], adoptiveLinks:[],
@@ -2611,7 +2611,7 @@ DATA.emperors = [
   alternateNames:["Basil the Bulgar-Slayer (\"Boulgaroktonos\")","Basileios II"],
   reignStart:976, reignEnd:1025, accessionYear:976, deathYear:1025, ageAccession:18, ageDeath:67,
   dynasty:"byzantine", region:"Eastern Roman Empire",
-  predecessor:"john-i-tzimiskes", successor:"constantine-viii", coEmperors:["Constantine VIII (brother)"],
+  predecessor:"john-i-tzimiskes", successor:"constantine-viii", coEmperors:["constantine-viii"],
   father:"Romanos II", mother:"Theophano", spouses:["(never married)"], children:[],
   adoptiveParents:[], adoptiveHeirs:[], notableRelatives:["Constantine VIII (brother & co-emperor)","of the Macedonian dynasty"],
   maritalLinks:[], biologicalLinks:[], adoptiveLinks:[],
@@ -7374,7 +7374,7 @@ function buildQuestions(){
       explain:`${b.name}: ${b.significance||''}`
     });
     if (b.roman) Q.push({
-      q:`Who commanded Rome at ${/^battle of /i.test(b.name)?'the ':''}${b.name.replace(/\s*\(\s*\d+\s*(BC|AD|BCE|CE)?\s*\)\s*$/i,'')} (${fmtYear(b.year)})?`,
+      q:`Who commanded Rome at ${/^(battle|siege|sack|fall|capture|storming|massacre|destruction) of /i.test(b.name)?'the ':''}${b.name.replace(/\s*\(\s*\d+\s*(BC|AD|BCE|CE)?\s*\)\s*$/i,'')} (${fmtYear(b.year)})?`,
       answer:b.roman,
       options:sample(named,3).map(n=>n.displayName).concat(b.roman),
       explain:`${b.name} — ${b.significance||''}`
@@ -7384,7 +7384,7 @@ function buildQuestions(){
   (DATA.glossary||[]).forEach(g=>{
     const others = sample((DATA.glossary||[]).filter(x=>x.term!==g.term),3);
     Q.push({
-      q:`What is a '${g.term}'?`,
+      q:`What is ${/^[aeiou]/i.test(g.term)?'an':'a'} '${g.term}'?`,
       answer:g.def,
       options:others.map(o=>o.def).concat(g.def),
       explain:`${g.term}: ${g.def}`
