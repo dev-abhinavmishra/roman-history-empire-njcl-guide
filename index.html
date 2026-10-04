@@ -6916,7 +6916,7 @@ function renderTree(){
     const re = emp.length ? Math.max(...emp.map(e=>e.reignEnd)) : null;
     const yrs = rs!=null ? ` · ${fmtYear(rs)}–${fmtYear(re)}` : "";
     bandSvg += `<rect x="6" y="${top}" width="${width-12}" height="${bot-top}" rx="12" fill="${d.color}" fill-opacity="0.06" stroke="${d.color}" stroke-opacity="0.22"/>
-      <text x="16" y="${top+17}" font-size="12.5" font-weight="700" fill="${d.color}">${esc(d.label)}${esc(yrs)}</text>`;
+      <text class="lane-label" x="16" y="${top+17}" font-size="12.5" font-weight="700" fill="${d.color}">${esc(d.label)}${esc(yrs)}</text>`;
   });
 
   // ---- scope divider between core (≤ Constantine) and later ----
