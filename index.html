@@ -340,6 +340,9 @@ html[data-theme="dark"] .bres.draw{color:#d8c77e}
 .war-head{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap}
 .war-meta{font-size:.75rem;color:var(--ink-faint)}
 .btl-wrap{overflow-x:auto}
+/* let war cards shrink below the table's intrinsic width so the wrap
+   actually scrolls instead of pushing the whole page sideways */
+#view-battles .card{min-width:0}
 table.btl{width:100%;border-collapse:collapse;font-size:.82rem}
 table.btl th,table.btl td{border-bottom:1px solid var(--line);padding:.42rem .5rem;text-align:left;vertical-align:top}
 table.btl thead th{background:var(--bg-sunk);font-family:var(--font-serif);border-bottom:1px solid var(--line-strong);white-space:nowrap}
@@ -6901,6 +6904,13 @@ function renderTree(){
     positions[n.id] = { x: cx - NODE_W/2, y: ty, cx, cy: ty + NODE_H/2 };
   });
   TREE.positions = positions;
+  // tight bounds of the node cards — pan clamping keeps ≥60px of CONTENT
+  // in view, not just ≥60px of the (mostly empty) canvas edges
+  const pvals = Object.values(positions);
+  TREE.contentBox = pvals.length ? {
+    x0: Math.min(...pvals.map(p=>p.x)),  y0: Math.min(...pvals.map(p=>p.y)),
+    x1: Math.max(...pvals.map(p=>p.x+NODE_W)), y1: Math.max(...pvals.map(p=>p.y+NODE_H))
+  } : null;
 
   const width  = PAD_LEFT*2 + maxW*SLOT_W;
   const height = yAcc + PAD_BOT;
@@ -7253,7 +7263,7 @@ function renderBattles(){
       <h3 class="war-head">${esc(w)}
         <span class="chip" style="background:${d0.color};color:#fff;border-color:transparent;cursor:default">${esc(d0.label)}</span>
         <span class="war-meta">${list.length} battle${list.length>1?"s":""} · ${rng} · ${wv}W/${wl}L</span></h3>
-      <div class="btl-wrap"><table class="btl"><thead><tr><th>Year</th><th>Battle</th><th>Result</th><th>Rome vs.</th><th>Why it matters</th></tr></thead>
+      <div class="btl-wrap"><table class="btl"><thead><tr><th>Year</th><th>Battle</th><th>Result</th><th>Rome vs.</th><th class="why">Why it matters</th></tr></thead>
       <tbody>${list.map(rows).join("")}</tbody></table></div>
     </div>`;
   }).join("");
@@ -8054,11 +8064,33 @@ function wire(){
   // never pan the whole canvas out of reach — keep ≥60px of it in view
   const clampPan = () => {
     const svg = $("#treeSvg");
-    const w = (parseFloat(svg.getAttribute("width"))||0) * TREE.scale;
-    const h = (parseFloat(svg.getAttribute("height"))||0) * TREE.scale;
-    const M = 60;
-    TREE.tx = Math.min(Math.max(TREE.tx, M - w), stage.clientWidth - M);
-    TREE.ty = Math.min(Math.max(TREE.ty, M - h), stage.clientHeight - M);
+    const b = TREE.contentBox || {x0:0, y0:0,
+      x1: parseFloat(svg.getAttribute("width"))||0,
+      y1: parseFloat(svg.getAttribute("height"))||0};
+    const M = 60, s = TREE.scale, sw = stage.clientWidth, sh = stage.clientHeight;
+    TREE.tx = Math.min(Math.max(TREE.tx, M - b.x1*s), sw - M - b.x0*s);
+    TREE.ty = Math.min(Math.max(TREE.ty, M - b.y1*s), sh - M - b.y0*s);
+    // bbox corners can be empty canvas — if nothing is on-screen, pull the
+    // nearest node back to the edge so the tree can never fully vanish
+    const onScreen = p => {
+      const x = p.x*s + TREE.tx, y = p.y*s + TREE.ty;
+      return x + NODE_W*s > 0 && x < sw && y + NODE_H*s > 0 && y < sh;
+    };
+    if (!Object.values(TREE.positions).some(onScreen)){
+      let best = null, bd = Infinity;
+      Object.values(TREE.positions).forEach(p => {
+        const x = p.x*s + TREE.tx, y = p.y*s + TREE.ty;
+        const dx = Math.max(0, -(x + NODE_W*s), x - sw), dy = Math.max(0, -(y + NODE_H*s), y - sh);
+        if (dx*dx + dy*dy < bd){ bd = dx*dx + dy*dy; best = p; }
+      });
+      if (best){
+        const x = best.x*s + TREE.tx, y = best.y*s + TREE.ty;
+        if (x + NODE_W*s <= 0)      TREE.tx = M - (best.x + NODE_W)*s;
+        else if (x >= sw)           TREE.tx = sw - M - best.x*s;
+        if (y + NODE_H*s <= 0)      TREE.ty = M - (best.y + NODE_H)*s;
+        else if (y >= sh)           TREE.ty = sh - M - best.y*s;
+      }
+    }
   };
   const move = (x,y) => { if(!TREE.dragging) return; TREE.tx += x-TREE.lastX; TREE.ty += y-TREE.lastY; TREE.lastX=x; TREE.lastY=y; clampPan(); applyTreeTransform(); };
   const up = () => { TREE.dragging=false; stage.classList.remove("grabbing"); };
