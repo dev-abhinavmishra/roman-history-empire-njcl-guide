@@ -339,6 +339,7 @@ html[data-theme="dark"] .bres.defeat{color:#e88}
 html[data-theme="dark"] .bres.draw{color:#d8c77e}
 .war-head{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap}
 .war-meta{font-size:.75rem;color:var(--ink-faint)}
+.btl-wrap{overflow-x:auto}
 table.btl{width:100%;border-collapse:collapse;font-size:.82rem}
 table.btl th,table.btl td{border-bottom:1px solid var(--line);padding:.42rem .5rem;text-align:left;vertical-align:top}
 table.btl thead th{background:var(--bg-sunk);font-family:var(--font-serif);border-bottom:1px solid var(--line-strong);white-space:nowrap}
@@ -368,6 +369,8 @@ dl.gloss dd .njcl{font-size:.74rem;color:var(--ink-faint);font-style:italic;disp
 .quiz-opt:disabled{cursor:default;opacity:.9}
 .quiz-explain{margin-top:.7rem;padding:.6rem .8rem;border-radius:8px;background:var(--bg-sunk);font-size:.85rem;color:var(--ink-soft)}
 .quiz-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;color:var(--ink-faint);font-size:.8rem}
+.qz-quit{background:none;border:none;padding:0;color:var(--ink-faint);font-size:.8rem;text-decoration:underline;cursor:pointer}
+.qz-quit:hover{color:var(--accent)}
 /* era strip */
 .era-strip{display:flex;gap:2px;height:52px;margin:.5rem 0;overflow-x:auto;padding-bottom:2px}
 .era-seg{position:relative;background:var(--accent);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 .45rem;min-width:44px}
@@ -378,8 +381,8 @@ dl.gloss dd .njcl{font-size:.74rem;color:var(--ink-faint);font-style:italic;disp
 .era-detail{border-left:2px solid var(--line);padding-left:.6rem}
 .chip.ext{background:#8a6f2c;color:#fff;border-color:transparent}
 .chip.adv{background:#6b5b8a;color:#fff;border-color:transparent}
-.cmp-field{border-bottom:1px solid var(--line);padding:.4rem 0}
-.cmp-field .fl{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700}
+.cmp-field{display:grid;grid-template-columns:1fr 1fr;gap:.05rem .8rem;border-bottom:1px solid var(--line);padding:.4rem 0}
+.cmp-field .fl{grid-column:1/-1;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);font-weight:700}
 .cmp-field .fv{font-size:.88rem;color:var(--ink-soft)}
 
 /* about / provenance */
@@ -7040,6 +7043,8 @@ function fitTree(){
   const w = parseFloat(svg.getAttribute("width")) || 1;
   const sw = stage.clientWidth;
   TREE.scale = Math.max(TREE_MIN_SCALE, Math.min(1.0, (sw - 12) / w));
+  TREE.fitScale = TREE.scale;   // manual zoom-out floors at fit — below it the
+                              // tree shrinks to an unreadable sliver for no gain
   TREE.tx = Math.max(0, (sw - w*TREE.scale)/2);
   TREE.ty = 8;
   applyTreeTransform();
@@ -7248,8 +7253,8 @@ function renderBattles(){
       <h3 class="war-head">${esc(w)}
         <span class="chip" style="background:${d0.color};color:#fff;border-color:transparent;cursor:default">${esc(d0.label)}</span>
         <span class="war-meta">${list.length} battle${list.length>1?"s":""} · ${rng} · ${wv}W/${wl}L</span></h3>
-      <table class="btl"><thead><tr><th>Year</th><th>Battle</th><th>Result</th><th>Rome vs.</th><th>Why it matters</th></tr></thead>
-      <tbody>${list.map(rows).join("")}</tbody></table>
+      <div class="btl-wrap"><table class="btl"><thead><tr><th>Year</th><th>Battle</th><th>Result</th><th>Rome vs.</th><th>Why it matters</th></tr></thead>
+      <tbody>${list.map(rows).join("")}</tbody></table></div>
     </div>`;
   }).join("");
   const total = B.length, pv = Math.round(v/total*100), pl = Math.round(l/total*100), pd = 100-pv-pl;
@@ -7463,12 +7468,13 @@ function renderQuiz(){
   const opts = shuffle(q.options.slice());
   v.innerHTML = `
     <div class="card" style="max-width:680px;margin:0 auto">
-      <div class="quiz-meta"><span>Question ${QUIZ.i+1} / ${QUIZ.qs.length}</span><span>Score: ${QUIZ.score}</span></div>
+      <div class="quiz-meta"><span>Question ${QUIZ.i+1} / ${QUIZ.qs.length}</span><span>Score: ${QUIZ.score} · <button class="qz-quit" id="qzQuit">End round</button></span></div>
       <div class="quiz-progress">${QUIZ.qs.map((_,i)=>`<span class="qp ${QUIZ.results[i]===true?'right':QUIZ.results[i]===false?'wrong':''}"></span>`).join("")}</div>
       <div class="quiz-q">${esc(q.q)}</div>
       <div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>
       <div id="qzExplain"></div>
     </div>`;
+  $("#qzQuit", v).addEventListener("click",()=>{ QUIZ.qs=[]; renderQuiz(); });
   $$(".quiz-opt", v).forEach(b=>b.addEventListener("click",()=>{
     const sel = b.dataset.o;
     const right = sel === q.answer;
@@ -7532,8 +7538,7 @@ function populateCompareSelects(){
   $("#cmpA").value = "augustus"; $("#cmpB").value = "constantine-i";
 }
 function cmpRow(label, va, vb){
-  return `<div class="cmp-field"><div class="fl">${esc(label)}</div><div class="fv">${va}</div></div>`
-       + `<div class="cmp-field"><div class="fl">&nbsp;</div><div class="fv">${vb}</div></div>`;
+  return `<div class="cmp-field"><div class="fl">${esc(label)}</div><div class="fv">${va}</div><div class="fv">${vb}</div></div>`;
 }
 function val(e, key){
   const v = e[key];
@@ -7618,12 +7623,11 @@ function renderCompare(){
   const comparisonRows = Array.from(allLabels).map(label => {
     const valA = fieldsA.find(f => f[0] === label)?.[1] || "—";
     const valB = fieldsB.find(f => f[0] === label)?.[1] || "—";
-    return `<div class="cmp-field"><div class="fl">${esc(label)}</div><div class="fv">${valA}</div></div>`
-         + `<div class="cmp-field"><div class="fl">&nbsp;</div><div class="fv">${valB}</div></div>`;
+    return `<div class="cmp-field"><div class="fl">${esc(label)}</div><div class="fv">${valA}</div><div class="fv">${valB}</div></div>`;
   }).join("");
   
   $("#cmpOut").innerHTML = `<div class="cmp-cols">${head(a)}${head(b)}</div>
-    <div class="cmp-cols" style="margin-top:.6rem"><div class="card">${comparisonRows}</div></div>`;
+    <div class="cmp-cols" style="margin-top:.6rem"><div class="card" style="grid-column:1/-1">${comparisonRows}</div></div>`;
 }
 
 /* ============================================================================
@@ -8033,21 +8037,30 @@ function wire(){
   // tree zoom/pan
   const stage = $("#treeStage"), svg = $("#treeSvg");
   $("#zoomIn").addEventListener("click", () => { TREE.scale = Math.min(TREE_MAX_SCALE, TREE.scale*1.15); applyTreeTransform(); });
-  $("#zoomOut").addEventListener("click", () => { TREE.scale = Math.max(TREE_MIN_SCALE, TREE.scale/1.15); applyTreeTransform(); });
+  $("#zoomOut").addEventListener("click", () => { TREE.scale = Math.max(TREE.fitScale||TREE_MIN_SCALE, TREE.scale/1.15); applyTreeTransform(); });
   $("#zoomFit").addEventListener("click", fitTree);
   stage.addEventListener("wheel", e => {
     e.preventDefault();
     const rect = stage.getBoundingClientRect();
     const mx = e.clientX - rect.left, my = e.clientY - rect.top;
     const factor = e.deltaY < 0 ? 1.12 : 1/1.12;
-    const ns = Math.min(TREE_MAX_SCALE, Math.max(TREE_MIN_SCALE, TREE.scale * factor));
+    const ns = Math.min(TREE_MAX_SCALE, Math.max(TREE.fitScale||TREE_MIN_SCALE, TREE.scale * factor));
     // zoom toward cursor
     TREE.tx = mx - (mx - TREE.tx) * (ns/TREE.scale);
     TREE.ty = my - (my - TREE.ty) * (ns/TREE.scale);
     TREE.scale = ns; applyTreeTransform();
   }, {passive:false});
   const down = (x,y) => { TREE.dragging=true; TREE.lastX=x; TREE.lastY=y; stage.classList.add("grabbing"); };
-  const move = (x,y) => { if(!TREE.dragging) return; TREE.tx += x-TREE.lastX; TREE.ty += y-TREE.lastY; TREE.lastX=x; TREE.lastY=y; applyTreeTransform(); };
+  // never pan the whole canvas out of reach — keep ≥60px of it in view
+  const clampPan = () => {
+    const svg = $("#treeSvg");
+    const w = (parseFloat(svg.getAttribute("width"))||0) * TREE.scale;
+    const h = (parseFloat(svg.getAttribute("height"))||0) * TREE.scale;
+    const M = 60;
+    TREE.tx = Math.min(Math.max(TREE.tx, M - w), stage.clientWidth - M);
+    TREE.ty = Math.min(Math.max(TREE.ty, M - h), stage.clientHeight - M);
+  };
+  const move = (x,y) => { if(!TREE.dragging) return; TREE.tx += x-TREE.lastX; TREE.ty += y-TREE.lastY; TREE.lastX=x; TREE.lastY=y; clampPan(); applyTreeTransform(); };
   const up = () => { TREE.dragging=false; stage.classList.remove("grabbing"); };
   stage.addEventListener("mousedown", e => { if (e.target.closest(".node")) return; down(e.clientX,e.clientY); });
   window.addEventListener("mousemove", e => move(e.clientX,e.clientY));
