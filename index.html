@@ -7478,7 +7478,7 @@ function renderQuiz(){
   const opts = shuffle(q.options.slice());
   v.innerHTML = `
     <div class="card" style="max-width:680px;margin:0 auto">
-      <div class="quiz-meta"><span>Question ${QUIZ.i+1} / ${QUIZ.qs.length}</span><span>Score: ${QUIZ.score} · <button class="qz-quit" id="qzQuit">End round</button></span></div>
+      <div class="quiz-meta"><span>Question ${QUIZ.i+1} / ${QUIZ.qs.length}</span><span>Score: <span id="qzScore">${QUIZ.score}</span> · <button class="qz-quit" id="qzQuit">End round</button></span></div>
       <div class="quiz-progress">${QUIZ.qs.map((_,i)=>`<span class="qp ${QUIZ.results[i]===true?'right':QUIZ.results[i]===false?'wrong':''}"></span>`).join("")}</div>
       <div class="quiz-q">${esc(q.q)}</div>
       <div class="quiz-opts">${opts.map(o=>`<button class="quiz-opt" data-o="${esc(o)}">${esc(o)}</button>`).join("")}</div>
@@ -7490,7 +7490,7 @@ function renderQuiz(){
     const right = sel === q.answer;
     QUIZ.results[QUIZ.i] = right;
     if (right) QUIZ.score++;
-    v.querySelector(".quiz-meta span:last-child").textContent = `Score: ${QUIZ.score}`;
+    v.querySelector("#qzScore").textContent = QUIZ.score;
     const dot = v.querySelectorAll(".qp")[QUIZ.i]; if (dot) dot.classList.add(right?"right":"wrong");
     $$(".quiz-opt", v).forEach(x=>{
       x.disabled = true;
